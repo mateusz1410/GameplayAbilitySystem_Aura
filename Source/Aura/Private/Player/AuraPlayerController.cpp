@@ -30,6 +30,8 @@ void AAuraPlayerController::BeginPlay()
 	InputModeData.SetHideCursorDuringCapture(false);
 	SetInputMode(InputModeData);
 
+
+
 }
 
 void AAuraPlayerController::SetupInputComponent()
