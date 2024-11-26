@@ -7,7 +7,7 @@
 
 UAuraAttributeSet::UAuraAttributeSet()
 {
-	InitHealth(100.f);// accesor InitParamName, too early to call SETTER in construct, ony init
+	InitHealth(50.f);// accesor InitParamName, too early to call SETTER in construct, ony init
 	InitMaxHealth(100.f);
 
 	InitMana(50.f);

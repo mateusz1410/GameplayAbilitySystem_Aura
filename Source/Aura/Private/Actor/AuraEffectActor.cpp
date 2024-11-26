@@ -33,6 +33,7 @@ void AAuraEffectActor::OnOverlap(UPrimitiveComponent* OverlapComponent, AActor* 
 		
 		UAuraAttributeSet* MutableAuraAttributeSet = const_cast<UAuraAttributeSet*>(AuraAttributeSet);// cast to remove const
 		MutableAuraAttributeSet->SetHealth(AuraAttributeSet->GetHealth() + 25.f); // const shoudn't be set
+		MutableAuraAttributeSet->SetMana(AuraAttributeSet->GetMana() - 25.f); // const shoudn't be set
 		Destroy();
 	}
 }
