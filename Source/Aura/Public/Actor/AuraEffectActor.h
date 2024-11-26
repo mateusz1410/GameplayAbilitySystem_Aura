@@ -45,6 +45,7 @@ protected:
 	UFUNCTION(BlueprintCallable)
 	void ApplyMultipleEffectsToTarget(AActor* TargetActor, TArray<TSubclassOf<UGameplayEffect>> GameplayEffectClassArray);
 
+
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Applied Effects")
 	bool bDestroyOnEffectRemoval = false;
 
@@ -57,7 +58,7 @@ protected:
 
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Applied Effects")
-	TSubclassOf<UGameplayEffect> InstantGameplayEffectClass; // applied immediately
+	TArray<TSubclassOf<UGameplayEffect>> InstantGameplayEffectClass; // applied immediately  // before TSubclassOf<UGameplayEffect>  TArray<...> for testing 
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Applied Effects")
 	EEffectApplicationPolicy InstantEffectApplicationPolicy = EEffectApplicationPolicy::EEAP_DoNotApply;
@@ -65,7 +66,7 @@ protected:
 	//---------
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Applied Effects")
-	TSubclassOf<UGameplayEffect> DurationGameplayEffectClass;//applied immediately and exists for duration then remove (no on target)
+	TArray<TSubclassOf<UGameplayEffect>> DurationGameplayEffectClass;//applied immediately and exists for duration then remove (no on target)
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Applied Effects")
 	EEffectApplicationPolicy DurationEffectApplicationPolicy = EEffectApplicationPolicy::EEAP_DoNotApply;;
@@ -73,7 +74,7 @@ protected:
 	//-----------
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Applied Effects")
-	TSubclassOf<UGameplayEffect> InfiniteGameplayEffectClass;//applied immediately and exists forever until it's removed
+	TArray <TSubclassOf<UGameplayEffect>> InfiniteGameplayEffectClass;//applied immediately and exists forever until it's removed
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Applied Effects")
 	EEffectApplicationPolicy InfiniteEffectApplicationPolicy = EEffectApplicationPolicy::EEAP_DoNotApply;;

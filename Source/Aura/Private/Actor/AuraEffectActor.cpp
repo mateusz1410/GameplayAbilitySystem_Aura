@@ -59,18 +59,18 @@ void AAuraEffectActor::OnOverlap(AActor* TargetActor)
 {
 	if (InstantEffectApplicationPolicy == EEffectApplicationPolicy::EEAP_OnOverlap)
 	{
-		ApplyEffectToTarget(TargetActor, InstantGameplayEffectClass);
+		ApplyMultipleEffectsToTarget(TargetActor, InstantGameplayEffectClass); //before ApplyEffectToTarget for testing ApplyMultipleEffectsToTarget
 	}
 
 
 	if (DurationEffectApplicationPolicy == EEffectApplicationPolicy::EEAP_OnOverlap)
 	{
-		ApplyEffectToTarget(TargetActor, DurationGameplayEffectClass);
+		ApplyMultipleEffectsToTarget(TargetActor, DurationGameplayEffectClass);
 	}
 
 	if (InfiniteEffectApplicationPolicy == EEffectApplicationPolicy::EEAP_OnOverlap)
 	{
-		ApplyEffectToTarget(TargetActor, InfiniteGameplayEffectClass);
+		ApplyMultipleEffectsToTarget(TargetActor, InfiniteGameplayEffectClass);
 	}
 }
 
@@ -78,18 +78,18 @@ void AAuraEffectActor::OnEndOverlap(AActor* TargetActor)
 {
 	if (InstantEffectApplicationPolicy == EEffectApplicationPolicy::EEAP_OnEndOverlap)
 	{
-		ApplyEffectToTarget(TargetActor, InstantGameplayEffectClass);
+		ApplyMultipleEffectsToTarget(TargetActor, InstantGameplayEffectClass);
 	}
 	//EEffectRemovalPolicy  InstantEffectApplicationPolic is no needed remove after application
 	if (DurationEffectApplicationPolicy == EEffectApplicationPolicy::EEAP_OnEndOverlap)
 	{
-		ApplyEffectToTarget(TargetActor, DurationGameplayEffectClass);
+		ApplyMultipleEffectsToTarget(TargetActor, DurationGameplayEffectClass);
 	}
 	//EEffectRemovalPolicy  DurationEffectApplicationPolicy is no needed, will remove after duration
 
 	if (InfiniteEffectApplicationPolicy == EEffectApplicationPolicy::EEAP_OnEndOverlap)
 	{
-		ApplyEffectToTarget(TargetActor, InfiniteGameplayEffectClass);
+		ApplyMultipleEffectsToTarget(TargetActor, InfiniteGameplayEffectClass);
 	}
 
 
@@ -116,7 +116,10 @@ void AAuraEffectActor::OnEndOverlap(AActor* TargetActor)
 		for (FActiveGameplayEffectHandle& Handle : HandlesToRemove)
 		{
 			ActiveEffectHandles.FindAndRemoveChecked(Handle); //safe remove from map,
+
+			
 		}
+
 	}
 
 }
