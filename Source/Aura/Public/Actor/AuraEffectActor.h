@@ -55,34 +55,47 @@ protected:
 	UFUNCTION(BlueprintCallable)
 	void OnEndOverlap(AActor* TargetActor);
 
+#pragma region InstantGameplayEffect
 
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Applied Effects")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Applied Effects", meta = (ToolTip = "List of instant GE apply on target"))
 	TArray<TSubclassOf<UGameplayEffect>> InstantGameplayEffectClass; // applied immediately  // before TSubclassOf<UGameplayEffect>  TArray<...> for testing 
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Applied Effects")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Applied Effects", meta = (ToolTip = "Instant GE apply"))
 	EEffectApplicationPolicy InstantEffectApplicationPolicy = EEffectApplicationPolicy::EEAP_DoNotApply;
 
-	//---------
+#pragma endregion
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Applied Effects")
+	//PeriodGameplayEffect DurationGE and InfiniteGE + Period
+
+#pragma region DurationGameplayEffect
+
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Applied Effects", meta = (ToolTip = "List of duration GE apply on target"))
 	TArray<TSubclassOf<UGameplayEffect>> DurationGameplayEffectClass;//applied immediately and exists for duration then remove (no on target)
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Applied Effects")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Applied Effects", meta = (ToolTip = "duration GE apply"))
 	EEffectApplicationPolicy DurationEffectApplicationPolicy = EEffectApplicationPolicy::EEAP_DoNotApply;;
 
-	//-----------
+	
+#pragma endregion
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Applied Effects")
+#pragma region InfiniteGameplayEffect
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Applied Effects" , meta = (ToolTip = "List of infinite GE apply on target"))
 	TArray <TSubclassOf<UGameplayEffect>> InfiniteGameplayEffectClass;//applied immediately and exists forever until it's removed
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Applied Effects")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Applied Effects", meta = (ToolTip = "infinite GE apply"))
 	EEffectApplicationPolicy InfiniteEffectApplicationPolicy = EEffectApplicationPolicy::EEAP_DoNotApply;;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Applied Effects")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Applied Effects", meta = (ToolTip = "infinite GE remove"))
 	EEffectRemovalPolicy InfiniteEffectRemovalPolicy = EEffectRemovalPolicy::EERP_RemoveOnEndOverlap;
 
-	//------
+#pragma endregion
+
 
 	TMap<FActiveGameplayEffectHandle, UAbilitySystemComponent*> ActiveEffectHandles;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Applied Effects", meta = (ToolTip = "Value set in GE when affect is apply. Can be used in CurveTabel, ActorLevel* SlalableFloatMaginitude "))
+	float ActorLevel=1.f; //GE*ActorLevel CurveTable
+
 };

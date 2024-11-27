@@ -3,7 +3,11 @@
 
 #include "AbilitySystem/AuraAttributeSet.h"
 #include "AbilitySystemComponent.h"
+#include "UObject/Object.h"
+#include "GameplayEffectExtension.h"
+#include "GameFramework/Character.h"
 #include "Net/UnrealNetwork.h"
+#include "AbilitySystemBlueprintLibrary.h"
 
 UAuraAttributeSet::UAuraAttributeSet()
 {
@@ -26,6 +30,102 @@ void UAuraAttributeSet::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& Ou
 
 }
 
+void UAuraAttributeSet::PreAttributeChange(const FGameplayAttribute& Attribute, float& NewValue)
+{	
+	Super::PreAttributeChange(Attribute, NewValue);
+
+	if (Attribute == GetHealthAttribute())
+	{
+		NewValue = FMath::Clamp(NewValue, 0.f, GetMaxHealth());
+	//	UE_LOG(LogTemp, Warning, TEXT("Health %f"), NewValue);
+	}
+
+	if (Attribute == GetMaxHealthAttribute())
+	{
+
+		NewValue = NewValue < 0.f ? 0.f : NewValue;
+	}
+
+	if (Attribute == GetManaAttribute())
+	{
+		NewValue = FMath::Clamp(NewValue, 0.f, GetMaxMana());
+	}
+	if (Attribute == GetMaxManaAttribute())
+	{
+		NewValue = NewValue < 0.f ? 0.f : NewValue;
+	}
+
+}
+
+void UAuraAttributeSet::SetEffectProperties(const FGameplayEffectModCallbackData& Data, FEffectProperties& Props) const
+{
+
+/*******************************   Source == couser of the effect, Target = target of the effect (owner of this AS, this class)   ********************/
+
+	// get data from FGameplayEffectModCallbackData& Data and put in FEffectProperties& Props
+
+	Props.EffectContextHandle = Data.EffectSpec.GetContext();// const FGameplayEffectContextHandle
+	Props.SourceASC = Props.EffectContextHandle.GetOriginalInstigatorAbilitySystemComponent(); // const UAbilitySystemComponent* ..  EffectContextHandle.GetOriginalIn ... //asc of source
+
+
+	if (IsValid(Props.SourceASC) && Props.SourceASC->AbilityActorInfo.IsValid() && Props.SourceASC->AbilityActorInfo->AvatarActor.IsValid())
+	{
+		Props.SourceAvatarActor = Props.SourceASC->AbilityActorInfo->AvatarActor.Get();
+		Props.SourceController = Props.SourceASC->AbilityActorInfo->PlayerController.Get();
+
+		if (Props.SourceController == nullptr && Props.SourceAvatarActor != nullptr)
+		{
+			if (const APawn* Pawn = Cast<APawn>(Props.SourceAvatarActor))
+			{
+				Props.SourceController = Pawn->GetController();
+			}
+		}
+		if (Props.SourceController)
+		{
+			Props.SourceCharacter = Cast<ACharacter>(Props.SourceController->GetPawn());
+		}
+	}
+
+	if (Data.Target.AbilityActorInfo.IsValid() && Data.Target.AbilityActorInfo->AvatarActor.Get())
+	{
+		Props.TargetAvatarActor = Data.Target.AbilityActorInfo->AvatarActor.Get();
+		Props.TargetController = Data.Target.AbilityActorInfo->PlayerController.Get();
+		Props.TargetCharacter = Cast<ACharacter>(Props.TargetAvatarActor);
+		Props.TargetASC = UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(Props.TargetAvatarActor);
+	}
+}
+
+void UAuraAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallbackData& Data)
+{
+	Super::PostGameplayEffectExecute(Data);
+
+	FEffectProperties Props;
+	SetEffectProperties(Data, Props);
+
+	/* LOG
+
+	UE_LOG(LogTemp, Warning, TEXT("Props EffectContextHandle %s"), *Props.EffectContextHandle.ToString());
+	UE_LOG(LogTemp, Warning, TEXT("Props SourceASC %s"), *Props.SourceASC->GetFullName());
+	UE_LOG(LogTemp, Warning, TEXT("Props SourceAvatarActor %s"), *Props.SourceAvatarActor->GetFullName());
+	UE_LOG(LogTemp, Warning, TEXT("Props SourceCharacter %s"), *Props.SourceCharacter->GetFullName());
+	UE_LOG(LogTemp, Warning, TEXT("Props SourceController %s"), *Props.SourceController->GetFullName());
+
+	UE_LOG(LogTemp, Warning, TEXT("Props TargetASC %s"), *Props.TargetASC->GetFullName());
+	UE_LOG(LogTemp, Warning, TEXT("Props TargetAvatarActor %s"), *Props.TargetAvatarActor->GetFullName());
+	UE_LOG(LogTemp, Warning, TEXT("Props TargetCharacter %s"), *Props.TargetCharacter->GetFullName());
+	UE_LOG(LogTemp, Warning, TEXT("Props TargetController %s"), *Props.TargetController->GetFullName());
+
+	*/
+
+	/*
+	if (Data.EvaluatedData.Attribute == GetHealthAttribute())
+	{
+		//UE_LOG(LogTemp, Warning, TEXT("Health %f"), GetHealth());
+		//UE_LOG(LogTemp, Warning, TEXT("Maginitude %f"), Data.EvaluatedData.Magnitude);
+	}
+	*/
+}
+
 void UAuraAttributeSet::OnRep_Health(const FGameplayAttributeData& OldHealth) const
 {
 	GAMEPLAYATTRIBUTE_REPNOTIFY(UAuraAttributeSet, Health, OldHealth); //GAS
@@ -45,3 +145,4 @@ void UAuraAttributeSet::OnRep_MaxMana(const FGameplayAttributeData& OldMaxMana) 
 {
 	GAMEPLAYATTRIBUTE_REPNOTIFY(UAuraAttributeSet, MaxMana, OldMaxMana);
 }
+

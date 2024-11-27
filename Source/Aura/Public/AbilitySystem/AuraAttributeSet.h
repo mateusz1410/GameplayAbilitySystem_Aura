@@ -20,6 +20,58 @@
 	*FORCEINLINE void UMyHealthSet::SetHealth(float NewVal);
 	*FORCEINLINE void UMyHealthSet::InitHealth(float NewVal);
 	*/
+class UAbilitySystemComponent;
+class AActor;
+class AController;
+struct FGameplayEffectContextHandle;
+class ACharacter;
+
+USTRUCT(BlueprintType)
+struct FEffectProperties
+{
+	GENERATED_BODY()
+
+	FEffectProperties() {};
+	FEffectProperties(FGameplayEffectContextHandle InEffectContextHandle, UAbilitySystemComponent* InSourceASC,
+		AActor* InSourceAvatarActor, AController* InSourceController, ACharacter* InSourceCharacter, UAbilitySystemComponent* InTargetASC,
+		AActor* InTargetAvatarActor, AController* InTargetController, ACharacter* InTargetCharacter)
+	: EffectContextHandle(InEffectContextHandle), SourceASC(InSourceASC), SourceAvatarActor (InSourceAvatarActor), SourceController(InSourceController),
+		SourceCharacter (InSourceCharacter), TargetASC(InTargetASC), TargetAvatarActor(InTargetAvatarActor),
+		TargetController(InTargetController), TargetCharacter(InTargetCharacter){};
+
+	UPROPERTY()
+	FGameplayEffectContextHandle EffectContextHandle;
+
+//-----------------------------------
+	UPROPERTY()
+	UAbilitySystemComponent* SourceASC = nullptr;
+
+	UPROPERTY()
+	AActor* SourceAvatarActor = nullptr;
+
+
+	UPROPERTY()
+	AController* SourceController = nullptr;
+
+	UPROPERTY()
+	ACharacter* SourceCharacter = nullptr;
+
+//-----------------------------------
+
+	UPROPERTY()
+	UAbilitySystemComponent* TargetASC = nullptr;
+
+	UPROPERTY()
+	AActor* TargetAvatarActor = nullptr;
+
+	UPROPERTY()
+	AController* TargetController = nullptr;
+
+	UPROPERTY()
+	ACharacter* TargetCharacter = nullptr;
+
+};
+
 
 /**
  * 
@@ -33,7 +85,11 @@ public:
 	UAuraAttributeSet();
 
 	// no need only .cpp required (in ViusalStudio)
-	//void UAuraAttributeSet::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps)const override; 
+	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps)const override; 
+
+	virtual void PreAttributeChange(const FGameplayAttribute& Attribute, float& NewValue) override; //clamp before set
+
+	virtual void PostGameplayEffectExecute(const FGameplayEffectModCallbackData& Data) override; //clamp after effect set, PostGameplayEffectExecute all inf about effect
 
 	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_Health, Category = "Vital Attribute")
 	FGameplayAttributeData Health;
@@ -65,4 +121,7 @@ public:
 	UFUNCTION()
 	void OnRep_MaxMana(const FGameplayAttributeData& OldMaxMana) const;
 
+private:
+
+	void SetEffectProperties(const FGameplayEffectModCallbackData& Data, FEffectProperties& Props) const; //OutProps
 };
