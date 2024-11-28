@@ -101,6 +101,37 @@ void UAuraAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallba
 
 	FEffectProperties Props;
 	SetEffectProperties(Data, Props);
+	
+	if (Data.EvaluatedData.Attribute == GetHealthAttribute())
+	{
+
+		GEngine->AddOnScreenDebugMessage(1, 3.f, FColor::Red, FString::Printf(TEXT("Health %s"), GetHealth()));
+
+		SetHealth(FMath::Clamp(GetHealth(), 0.f, GetMaxHealth()));
+	}
+
+	if (Data.EvaluatedData.Attribute == GetMaxHealthAttribute())
+	{
+
+		GEngine->AddOnScreenDebugMessage(1, 3.f, FColor::Red, FString::Printf(TEXT("MaxHealth %s"), GetMaxHealth()));
+
+		SetMaxHealth(FMath::Clamp(GetMaxHealth(), 0.f, GetMaxHealth()));
+	}
+
+	if (Data.EvaluatedData.Attribute == GetManaAttribute())
+	{
+
+		GEngine->AddOnScreenDebugMessage(1, 3.f, FColor::Red, FString::Printf(TEXT("Mana %s"), GetMana()));
+
+		SetMana(FMath::Clamp(GetMana(), 0.f, GetMaxMana()));
+	}
+	if (Data.EvaluatedData.Attribute == GetMaxManaAttribute())
+	{
+
+		GEngine->AddOnScreenDebugMessage(1, 3.f, FColor::Red, FString::Printf(TEXT("MaxMana %s"), GetMaxMana()));
+
+		SetMaxMana(FMath::Clamp(GetMaxMana(), 0.f, GetMaxMana()));
+	}
 
 	/* LOG
 
