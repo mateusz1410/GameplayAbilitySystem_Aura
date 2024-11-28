@@ -43,6 +43,29 @@ void UOverlayWidgetController::BindCallbacksToDependencies()
 	AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(
 		AuraAttributeSet->GetMaxManaAttribute()).AddUObject(this, &UOverlayWidgetController::MaxManaChanged);
 
+	// add lambda  == AddUObject(this, function ref )
+	Cast<UAuraAbilitySystemComponent>(AbilitySystemComponent)->EffectAssetTags.AddLambda(
+	
+		[this](const FGameplayTagContainer& AssetTags) //[this]  -- out of scope GetDataTableRowByTag, FUIWidgetRow, MessageWidgetDataTable. this means this class 
+		{
+
+			for (const FGameplayTag& Tag : AssetTags)
+			{
+				//* "A.1".MatchesTag("A") will return True, "A".MatchesTag("A.1") will return False
+
+				FGameplayTag MessageTag = FGameplayTag::RequestGameplayTag(FName("Message")); //get Tag Message
+				if (Tag.MatchesTag(MessageTag))
+				{
+					const FUIWidgetRow* Row = GetDataTableRowByTag<FUIWidgetRow>(MessageWidgetDataTable, Tag); //FUIWidgetRow struct use in DT 
+					MessageWidgetRowDelegate.Broadcast(*Row);
+				}
+
+				//const FString Msg = FString::Printf(TEXT("GE Tag: %s"), *Tag.ToString()); // Tag.GetTagName() or 
+				//GEngine->AddOnScreenDebugMessage(-1, 8.f, FColor::Blue, Msg);
+			}
+		}  
+	); // [cc](function parameter){function body/definition}
+	
 }
 
 void UOverlayWidgetController::HealthChanged(const FOnAttributeChangeData& Data) const
