@@ -32,7 +32,6 @@ void AAuraCharacter::PossessedBy(AController* NewController)
 
 	//Init ability info for the Server
 	InitAbilityActorInfo();
-
 }
 
 void AAuraCharacter::OnRep_PlayerState()
@@ -55,7 +54,6 @@ void AAuraCharacter::InitAbilityActorInfo()
 	AbilitySystemComponent = AuraPlayerState->GetAbilitySystemComponent();
 	AttributeSet = AuraPlayerState->GetAttributeSet();
 
-	
 	//widgetController
 	if(AAuraPlayerController* AuraPlayerController = Cast<AAuraPlayerController>(GetController()))
 	{
@@ -68,4 +66,5 @@ void AAuraCharacter::InitAbilityActorInfo()
 
 	}
 
+	InitializePriamryAttributes();
 }
