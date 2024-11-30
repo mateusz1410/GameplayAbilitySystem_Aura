@@ -43,6 +43,14 @@ void AAuraCharacter::OnRep_PlayerState()
 
 }
 
+int32 AAuraCharacter::GetPlayerLevel()
+{
+	const AAuraPlayerState* AuraPlayerState = GetPlayerState<AAuraPlayerState>();
+	check(AuraPlayerState);
+
+	return AuraPlayerState->GetPlayerLevel();
+}
+
 void AAuraCharacter::InitAbilityActorInfo()
 {
 	AAuraPlayerState* AuraPlayerState = GetPlayerState<AAuraPlayerState>(); // no actor on map, if you place acotr on map  this will return nullptr
@@ -66,5 +74,5 @@ void AAuraCharacter::InitAbilityActorInfo()
 
 	}
 
-	InitializePriamryAttributes();
+	InitializeDefaultAttributes();
 }

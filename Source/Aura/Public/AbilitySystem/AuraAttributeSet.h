@@ -173,7 +173,7 @@ public:
 
 #pragma region Vital Attributes 
 	
-	// Initialize in Construct 	InitHealth(50.f); InitMaxHealth(100.f);, not best way but you can do it
+	// Initialize in GE
 
 	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_Health, Category = "Vital Attribute")
 	FGameplayAttributeData Health;
@@ -184,8 +184,6 @@ public:
 	FGameplayAttributeData Mana;
 	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, Mana);
 
-
-	//MaxHealth and MaxMana in SecondaryAttributes
 
 #pragma endregion
 
@@ -198,7 +196,6 @@ public:
 	UFUNCTION()
 	void OnRep_Mana(const FGameplayAttributeData& OldMana) const;
 
-	//OnRep_MaxHealth and OnRep_MaxMana in SecondaryAttributes
 
 	/**Primary Attributes*/
 

@@ -53,3 +53,8 @@ void AAuraEnemy::UnHighlightActor()
 	Weapon->SetRenderCustomDepth(false);
 	Weapon->SetCustomDepthStencilValue(0);
 }
+
+int32 AAuraEnemy::GetPlayerLevel()
+{
+	return Level;
+}

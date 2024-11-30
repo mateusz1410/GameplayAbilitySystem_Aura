@@ -11,11 +11,6 @@
 
 UAuraAttributeSet::UAuraAttributeSet()
 {
-	InitHealth(50.f);// accesor InitParamName, too early to call SETTER in construct, ony init
-	InitMaxHealth(100.f);
-
-	InitMana(25.f);
-	InitMaxMana(50.f);
 }
 
 void UAuraAttributeSet::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps)const

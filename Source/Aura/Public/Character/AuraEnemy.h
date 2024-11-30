@@ -25,9 +25,16 @@ public:
 
 #pragma region IEnemyInterface
 
-	// Inherited via IEnemyInterface
+	/** Inherited via IEnemyInterface */
 	void HighlightActor() override;
 	void UnHighlightActor() override;
+	/**  end Enemy Interface  */
+
+	/** Combat Interface*/
+	virtual int32 GetPlayerLevel() override;
+	/** end Comabt Interface*/
+
+
 
 #pragma endregion
 
@@ -37,4 +44,7 @@ public:
 protected:
 	virtual void InitAbilityActorInfo() override;
 
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Character class Defaults")
+	int32 Level = 1;
 };
