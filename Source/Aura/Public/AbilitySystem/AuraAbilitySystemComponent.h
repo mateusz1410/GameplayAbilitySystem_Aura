@@ -10,7 +10,7 @@ DECLARE_MULTICAST_DELEGATE_OneParam(FEffectAssetTags, const FGameplayTagContaine
 
 
 class UAuraUserWidget;
-
+class UGameplayAbility;
 /**
  *
  */
@@ -24,6 +24,8 @@ public:
 	void AbilityActorInfoSet();
 
 	FEffectAssetTags EffectAssetTags;
+
+	void AddCharacterAbilities(const TArray<TSubclassOf<UGameplayAbility>>& StartupAbility);
 
 protected:
 

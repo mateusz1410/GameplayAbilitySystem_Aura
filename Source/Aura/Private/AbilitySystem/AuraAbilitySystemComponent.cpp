@@ -18,6 +18,17 @@ void UAuraAbilitySystemComponent::AbilityActorInfoSet() // make sure  ASC is cre
 
 }
 
+void UAuraAbilitySystemComponent::AddCharacterAbilities(const TArray<TSubclassOf<UGameplayAbility>>& StartupAbility)
+{
+	for (const TSubclassOf<UGameplayAbility> AbilityClass : StartupAbility)
+	{
+		FGameplayAbilitySpec AbilitySpec = FGameplayAbilitySpec(AbilityClass, 1); // 1 level
+		//GiveAbility(AbilitySpec); //give ability 
+		GiveAbilityAndActivateOnce(AbilitySpec); // give and activate
+	}
+
+}
+
 //call when GE was applied
 void UAuraAbilitySystemComponent::EffectApplied(UAbilitySystemComponent* AbilitySystemComponent, const FGameplayEffectSpec& EffectSpec, FActiveGameplayEffectHandle ActiveEffectHandle)
 {
