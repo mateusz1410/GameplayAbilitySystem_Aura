@@ -7,28 +7,6 @@
 FAuraGameplayTags FAuraGameplayTags::GameplayTags; // set singleton, only one instance. FAuraGameplayTags:: - becouse is staitc, a same as with the functions
 
 
-//--------------------------- Instead of looping for tag in C++ we can store them in variable after adding them  -------------------
-/*
-     /** looping
-
-		for (const FGameplayTag& Tag : AssetTags)
-		{
-			FGameplayTag MessageTag = FGameplayTag::RequestGameplayTag(FName("Message"));
-			if (Tag.MatchesTag(MessageTag))
-			{
-				FGameplayTag MatcheTag = Tag;
-			}
-		}
-
-	/** add and store in variable
-	
-	GameplayTags.Attributes_Secondary_Armor = UGameplayTagsManager::Get().AddNativeGameplayTag(FName("Attributes.Secondary.Armor"), FString("Reduces damage taken, improve Block Chance"));
-
-*/
-
-FGameplayTag Attributes_Secondary_Armor;
-
-
 void FAuraGameplayTags::InitializeNativeGameplayTags()
 {
 	/*
@@ -109,4 +87,69 @@ void FAuraGameplayTags::InitializeNativeGameplayTags()
 		FName("Attributes.Secondary.MaxMana"),
 		FString("Maximum amount of Mana obtainable")
 	);
+
+	/*
+	* Input Tags
+	*/
+
+	GameplayTags.InputTag_LMB = UGameplayTagsManager::Get().AddNativeGameplayTag(
+		FName("InputTag.LMB"),
+		FString("Input tag for Left Mouse Button")
+	);
+
+	GameplayTags.InputTag_RMB = UGameplayTagsManager::Get().AddNativeGameplayTag(
+		FName("InputTag.RMB"),
+		FString("Input tag for Right Mouse Button")
+	);
+
+	GameplayTags.InputTag_1 = UGameplayTagsManager::Get().AddNativeGameplayTag(
+		FName("InputTag.1"),
+		FString("Input tag for 1 Key")
+	);
+
+	GameplayTags.InputTag_2 = UGameplayTagsManager::Get().AddNativeGameplayTag(
+		FName("InputTag.2"),
+		FString("Input tag for 2 Key")
+	);
+
+	GameplayTags.InputTag_3 = UGameplayTagsManager::Get().AddNativeGameplayTag(
+		FName("InputTag.3"),
+		FString("Input tag for 3 Key")
+	);
+
+	GameplayTags.InputTag_4 = UGameplayTagsManager::Get().AddNativeGameplayTag(
+		FName("InputTag.4"),
+		FString("Input tag for 4 Key")
+	);
+
+	GameplayTags.InputTag_5 = UGameplayTagsManager::Get().AddNativeGameplayTag(
+		FName("InputTag.5"),
+		FString("Input tag for 5 Key")
+	);
+
+	GameplayTags.InputTag_6 = UGameplayTagsManager::Get().AddNativeGameplayTag(
+		FName("InputTag.6"),
+		FString("Input tag for 6 Key")
+	);
+
+	GameplayTags.InputTag_7 = UGameplayTagsManager::Get().AddNativeGameplayTag(
+		FName("InputTag.7"),
+		FString("Input tag for 7 Key")
+	);
+
+	GameplayTags.InputTag_8 = UGameplayTagsManager::Get().AddNativeGameplayTag(
+		FName("InputTag.8"),
+		FString("Input tag for 8 Key")
+	);
+
+	GameplayTags.InputTag_9 = UGameplayTagsManager::Get().AddNativeGameplayTag(
+		FName("InputTag.9"),
+		FString("Input tag for 9 Key")
+	);
+
+	GameplayTags.InputTag_0 = UGameplayTagsManager::Get().AddNativeGameplayTag(
+		FName("InputTag.0"),
+		FString("Input tag for 0 Key")
+	);
+
 }
