@@ -20,6 +20,11 @@
 	*FORCEINLINE void UMyHealthSet::SetHealth(float NewVal);
 	*FORCEINLINE void UMyHealthSet::InitHealth(float NewVal);
 	*/
+
+// no need // DECLARE_DELEGATE_RetVal(FGameplayAttribute, FAttributeSignature);// outval, Name
+// BindStatic()
+//FGameplayAttribute Attr = Pair.Value.Execute(); //execute delegate, DECLARE_DELEGATE_RetVal(FGameplayAttribute, FAttributeSignature);// outval, Name
+
 class UAbilitySystemComponent;
 class AActor;
 class AController;
@@ -72,6 +77,36 @@ struct FEffectProperties
 
 };
 
+#pragma region FuncPtrExplanation
+/**********  FunctionPointer is pointer on function returning FGameplayAttribute, *******************/
+
+//TBaseStaticDelegateInstance<FGameplayAttribute(), FDefaultDelegateUserPolicy>::FFuncPtr FunctionPointer; //::FFuncPtr is memeber, 
+//TMap<FGameplayTag, TBaseStaticDelegateInstance<FGameplayAttribute(), FDefaultDelegateUserPolicy>::FFuncPtr> TagsToAttributes; // Old TMap<FGameplayTag, FAttributeSignature> TagsToAttributes; 
+
+
+//typedef TBaseStaticDelegateInstance<FGameplayAttribute(), FDefaultDelegateUserPolicy>::FFuncPtr FAttributeFuncPtr; // //typedef type AliasTypeName;
+
+//raw c++ version of function pointer returning FGameplayAttribute, no params.
+// 
+// FAttributeFuncPtr == FGameplayAttribute(*)()   // !! ---- same type ------ !!
+// 
+// declare pointer to function:  typedef ReturnType (* FunctionPointerName)(ParamType1, Paramtype2); ReturnType = FunctionName - assign; ReturnType() -exec;
+
+//---------------------------------------------------------
+
+/*
+template<class T>
+using TAliasTypeName = typename TArray<T> // template alias;  
+*/
+
+// pointer to static function  becouse - TBase STATIC DelegateInstance<T....											
+// Variadic param - any quantity, TBaseStaticDelegateInstance<RetValType(ParamTypes...), UserPolicy, VarTypes...>
+// 
+// == T(*)() -- pointer to function returning T type,
+#pragma endregion
+
+template<class T>
+using TStaticFunPtr = typename TBaseStaticDelegateInstance<T, FDefaultDelegateUserPolicy>::FFuncPtr; 
 
 /**
  * 
@@ -90,6 +125,13 @@ public:
 	virtual void PreAttributeChange(const FGameplayAttribute& Attribute, float& NewValue) override; //clamp before set
 
 	virtual void PostGameplayEffectExecute(const FGameplayEffectModCallbackData& Data) override; //clamp after effect set, PostGameplayEffectExecute all inf about effect
+
+
+//------------------------------------------------
+
+TMap<FGameplayTag, TStaticFunPtr<FGameplayAttribute()>> TagsToAttributes;// any function returning FGameplayAttribute
+
+//-----------------------------------------------------
 
 	/*  
 	*Primary Attributes  
