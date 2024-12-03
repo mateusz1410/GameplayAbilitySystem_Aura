@@ -56,6 +56,7 @@ private:
 
 	TScriptInterface<IEnemyInterface> LastActor; // insted of IEnemyInterface*
 	TScriptInterface <IEnemyInterface> ThisActor; // insted of IEnemyInterface*
+	FHitResult CursorHit;
 
 //------------------------------------- Ability ---------------------
 
@@ -77,7 +78,7 @@ private:
 
 	float FollowTime = 0.f; //how long button is pressed
 	float ShortPressThreshold = 0.5f; //click to move or hold to follow cusor, threshold
-	bool bAutoRunning = false; // following cursor
+	bool bAutoRunning = false; // move to location under cursor, not follow cursor
 	bool bTargeting = false; // mouse over someActor
 	
 	UPROPERTY(EditDefaultsOnly)
@@ -85,4 +86,7 @@ private:
 
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<USplineComponent> Spline;
+
+	void AutoRun(); // move to clicked location
+
 };
