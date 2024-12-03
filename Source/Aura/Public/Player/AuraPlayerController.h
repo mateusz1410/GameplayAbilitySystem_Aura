@@ -18,6 +18,7 @@ class IEnemyInterface;
 class UAuraInputConfig;
 struct FGameplayTag;
 class UAuraAbilitySystemComponent;
+class USplineComponent;
 
 UCLASS()
 class AURA_API AAuraPlayerController : public APlayerController
@@ -56,7 +57,7 @@ private:
 	TScriptInterface<IEnemyInterface> LastActor; // insted of IEnemyInterface*
 	TScriptInterface <IEnemyInterface> ThisActor; // insted of IEnemyInterface*
 
-	//-------------------------------------
+//------------------------------------- Ability ---------------------
 
 	void AbilityInputTagPressed(FGameplayTag InputTag);
 	void AbilityInputTagReleased(FGameplayTag InputTag);
@@ -69,4 +70,19 @@ private:
 	TObjectPtr<UAuraAbilitySystemComponent> AuraAbilitySystemComponent;
 
 	UAuraAbilitySystemComponent* GetASC();
+
+//----------------- Click To Move ------
+
+	FVector CachedDestination = FVector::Zero(); // click location 3D
+
+	float FollowTime = 0.f; //how long button is pressed
+	float ShortPressThreshold = 0.5f; //click to move or hold to follow cusor, threshold
+	bool bAutoRunning = false; // following cursor
+	bool bTargeting = false; // mouse over someActor
+	
+	UPROPERTY(EditDefaultsOnly)
+	float AutoRunAcceptanceRadius = 50.f;
+
+	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<USplineComponent> Spline;
 };
