@@ -27,6 +27,9 @@ public:
 
 	void AddCharacterAbilities(const TArray<TSubclassOf<UGameplayAbility>>& StartupAbility);
 
+	void AbilityInputTagHeld(const  FGameplayTag& InputTag); // foe hold and pressed
+	void AbilityInputTagReleased(const  FGameplayTag& InputTag);
+
 protected:
 
 	void EffectApplied(UAbilitySystemComponent* AbilitySystemComponent, const FGameplayEffectSpec& EffectSpec, FActiveGameplayEffectHandle ActiveEffectHandle);

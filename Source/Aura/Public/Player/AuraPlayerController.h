@@ -15,6 +15,9 @@ class UInputMappingContext;
 class UInputAction;
 struct FInputActionValue;
 class IEnemyInterface;
+class UAuraInputConfig;
+struct FGameplayTag;
+class UAuraAbilitySystemComponent;
 
 UCLASS()
 class AURA_API AAuraPlayerController : public APlayerController
@@ -32,7 +35,8 @@ protected:
 
 	virtual void SetupInputComponent() override;
 	//insted of 
-	//virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override; //.. in character class
+	//virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override; //.. in 
+	// haracter class
 
 private:
 #pragma region InputAction/Mapping
@@ -52,5 +56,17 @@ private:
 	TScriptInterface<IEnemyInterface> LastActor; // insted of IEnemyInterface*
 	TScriptInterface <IEnemyInterface> ThisActor; // insted of IEnemyInterface*
 
+	//-------------------------------------
 
+	void AbilityInputTagPressed(FGameplayTag InputTag);
+	void AbilityInputTagReleased(FGameplayTag InputTag);
+	void AbilityInputTagHeld(FGameplayTag InputTag);
+
+	UPROPERTY(EditDefaultsOnly, Category = "Input")
+	TObjectPtr<UAuraInputConfig> InputConfing;
+
+	UPROPERTY()
+	TObjectPtr<UAuraAbilitySystemComponent> AuraAbilitySystemComponent;
+
+	UAuraAbilitySystemComponent* GetASC();
 };
