@@ -9,15 +9,20 @@
 void UAuraProjectileSpell::ActivateAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo, const FGameplayEventData* TriggerEventData)
 {
 	Super::ActivateAbility(Handle, ActorInfo, ActivationInfo, TriggerEventData);
+	//HasAuthority(&ActivationInfo); //in ability
+}
 
-	const bool bIsServer = HasAuthority(&ActivationInfo); //in ability
+void UAuraProjectileSpell::SpawnProjectile()
+{
+	
+	const bool bIsServer = GetAvatarActorFromActorInfo()->HasAuthority();
 	if (!bIsServer) return;
 
 	ICombatInterface* ComabtInterface = Cast<ICombatInterface>(GetAvatarActorFromActorInfo());
 	if (ComabtInterface)
 	{
 		const FVector SocketLocation = ComabtInterface->GetCombatSocketLocation();
-			
+
 		FTransform SpawnTransform;
 		SpawnTransform.SetLocation(SocketLocation);
 

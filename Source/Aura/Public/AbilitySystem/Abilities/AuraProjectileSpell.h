@@ -21,6 +21,9 @@ protected:
 	/** What happen when ability is Activated, call by TryAbility, no directly*/
 	virtual void ActivateAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo, const FGameplayEventData* TriggerEventData) override;
 
+	UFUNCTION(BlueprintCallable, Category = "Projectile")
+	void SpawnProjectile();
+
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TSubclassOf<AAuraProjectile> ProjectileClass;
 };
