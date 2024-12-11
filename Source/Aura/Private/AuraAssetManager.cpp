@@ -3,6 +3,7 @@
 
 #include "AuraAssetManager.h"
 #include "AuraGameplayTags.h"
+#include "AbilitySystemGlobals.h"
 
 
 //UAuraAssetManager UAuraAssetManager::AuraAssetManager; there is UAssetManager UE class
@@ -21,4 +22,7 @@ void UAuraAssetManager::StartInitialLoading()
 	Super::StartInitialLoading();
 
 	FAuraGameplayTags::InitializeNativeGameplayTags();// add Native GameplayTags
+	
+	/** req for TargetData in Task to works*/
+	UAbilitySystemGlobals::Get().InitGlobalData();
 }
