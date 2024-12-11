@@ -90,14 +90,12 @@ void AAuraPlayerController::AbilityInputTagReleased(FGameplayTag InputTag)
 		return;
 	}
 
-	if (bTargeting)
+	if (GetASC())
 	{
-		if (GetASC())
-		{
-			GetASC()->AbilityInputTagReleased(InputTag);
-		}
+		GetASC()->AbilityInputTagReleased(InputTag);
 	}
-	else // move to location prepare, call in AutoRun
+
+	if (!bTargeting && !bShiftKeyDown) // move to location prepare, call in AutoRun
 	{
 		APawn* ControlledPawn = GetPawn();
 		if (FollowTime <= ShortPressThreshold && ControlledPawn)
@@ -108,7 +106,7 @@ void AAuraPlayerController::AbilityInputTagReleased(FGameplayTag InputTag)
 
 				for (const FVector& PointLoc : NavPath->PathPoints)
 				{
-					Spline->AddSplinePoint(PointLoc,ESplineCoordinateSpace::World); // add to spline to make smoth rotation and movement
+					Spline->AddSplinePoint(PointLoc, ESplineCoordinateSpace::World); // add to spline to make smoth rotation and movement
 					//DrawDebugSphere(GetWorld(), PointLoc, 8.f, 8, FColor::Green,false,5.f);
 				}
 
@@ -126,23 +124,23 @@ void AAuraPlayerController::AbilityInputTagReleased(FGameplayTag InputTag)
 
 void AAuraPlayerController::AbilityInputTagHeld(FGameplayTag InputTag)
 {
-	if (!InputTag.MatchesTagExact(FAuraGameplayTags::Get().InputTag_LMB))
+	if (!InputTag.MatchesTagExact(FAuraGameplayTags::Get().InputTag_LMB))//not LMB 
 	{
 		if (GetASC())
 		{
-			GetASC()->AbilityInputTagHeld(InputTag);
+			GetASC()->AbilityInputTagHeld(InputTag); 
 		}
 		return;
 	}
 
-	if (bTargeting)
+	if (bTargeting || bShiftKeyDown) //LMB, got Target or hold shift
 	{
 		if (GetASC())
 		{
 			GetASC()->AbilityInputTagHeld(InputTag);
 		}
 	}
-	else //Follow cursor
+	else //Follow cursor, move
 	{
 		FollowTime += GetWorld()->GetDeltaSeconds();
 
@@ -203,7 +201,21 @@ void AAuraPlayerController::SetupInputComponent()
 
 	UAuraInputComponent* AuraInputComponent = CastChecked<UAuraInputComponent>(InputComponent);
 	AuraInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &AAuraPlayerController::Move);
+	AuraInputComponent->BindAction(ShiftAction, ETriggerEvent::Started, this, &AAuraPlayerController::ShiftPressed);
+	AuraInputComponent->BindAction(ShiftAction, ETriggerEvent::Completed, this, &AAuraPlayerController::ShiftReleased);
+
+	// call 0-1 and LMB,RMB, click,hold, released. call with tag
 	AuraInputComponent->BindAbilityActions(InputConfing, this, &ThisClass::AbilityInputTagPressed, &ThisClass::AbilityInputTagReleased, &ThisClass::AbilityInputTagHeld);
+}
+
+void AAuraPlayerController::ShiftPressed()
+{
+	bShiftKeyDown = true;
+}
+
+void AAuraPlayerController::ShiftReleased()
+{
+	bShiftKeyDown = false;
 }
 
 void AAuraPlayerController::Move(const FInputActionValue& InputActionValue)
