@@ -26,6 +26,6 @@ public:
 	virtual int32 GetPlayerLevel();
 	virtual FVector GetCombatSocketLocation();
 
-	UFUNCTION(BlueprintImplementableEvent,BlueprintCallable) //canot be virtual if BlueprintImplementableEvent   
+	UFUNCTION(BlueprintImplementableEvent,BlueprintCallable) //can't be virtual if BlueprintImplementableEvent   
 	void UpdateFacingTarget(const FVector& Target); 
 };
