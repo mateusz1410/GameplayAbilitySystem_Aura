@@ -3,9 +3,11 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "GameplayEffectTypes.h"
 #include "GameFramework/Actor.h"
 #include "AuraProjectile.generated.h"
 
+struct FGameplayEffectSpecHandle;
 class USphereComponent;
 class UProjectileMovementComponent;
 class UNiagaraSystem;
@@ -20,6 +22,9 @@ public:
 
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<UProjectileMovementComponent> ProjectileMovement;
+
+	UPROPERTY(BlueprintReadWrite, meta = (ExposeOnSpawn = true)) 
+	FGameplayEffectSpecHandle DamageEffectSpecHandle; //effect applied on target when Overlap
 
 protected:
 	virtual void BeginPlay() override;
