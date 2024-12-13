@@ -1,3 +1,4 @@
+
 // Copyright  Mateusz Iwanek
 
 #pragma once
@@ -5,8 +6,10 @@
 #include "CoreMinimal.h"
 #include "Character/AuraCharacterBase.h"
 #include "Interaction/EnemyInterface.h"
+#include "UI/WidgetController/OverlayWidgetController.h"
 #include "AuraEnemy.generated.h"
 
+class UWidgetComponent;
 /**
  * 
  */
@@ -38,6 +41,13 @@ public:
 
 #pragma endregion
 
+	UPROPERTY(BlueprintAssignable)
+	FOnAttributeChangedSignature OnHealthChanged; // DelegateSignature from OverlayWidget
+
+	UPROPERTY(BlueprintAssignable)
+	FOnAttributeChangedSignature OnMaxHealthChanged; // DelegateSignature from OverlayWidget
+	
+	
 	UPROPERTY(BlueprintReadOnly)
 	bool bHighlighted = false;
 
@@ -47,4 +57,8 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Character class Defaults")
 	int32 Level = 1;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Character class Defaults")
+	TObjectPtr<UWidgetComponent> HealthBar;
+	
 };
