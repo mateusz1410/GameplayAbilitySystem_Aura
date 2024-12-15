@@ -8,6 +8,8 @@
 #include "Aura/Aura.h"
 #include "Components/WidgetComponent.h"
 #include "UI/Widget/AuraUserWidget.h"
+#include "AuraGameplayTags.h"
+#include "GameFramework/CharacterMovementComponent.h"
 
 
 AAuraEnemy::AAuraEnemy()
@@ -28,9 +30,12 @@ void AAuraEnemy::BeginPlay()
 {
 	Super::BeginPlay();
 
+	GetCharacterMovement()->MaxWalkSpeed = BaseWalkSpeed;
+	
 	//Init ability info for the Server and Clients
 	check(AbilitySystemComponent);
 	InitAbilityActorInfo();
+	UAuraAbilitySystemLibrary::GiveStartupAbilities(this,AbilitySystemComponent);
 
 	if (UAuraUserWidget* AuraUserWidget = Cast<UAuraUserWidget>(HealthBar->GetUserWidgetObject()))
 	{
@@ -44,22 +49,35 @@ void AAuraEnemy::BeginPlay()
 		AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(AuraAS->GetHealthAttribute()).AddLambda(
 			[this](const FOnAttributeChangeData& Data)
 			{
-				OnHealthChanged.Broadcast(Data.NewValue); // call own delegate, to brodcast it to widget
+				OnHealthChanged.Broadcast(Data.NewValue); // call own delegate, to broadcast it to widget
 			}
 			);
 
 		AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(AuraAS->GetMaxHealthAttribute()).AddLambda(
 			[this](const FOnAttributeChangeData& Data)
 			{
-				OnMaxHealthChanged.Broadcast(Data.NewValue); // call own delegate, to brodcast it to widget
+				OnMaxHealthChanged.Broadcast(Data.NewValue); // call own delegate, to broadcast it to widget
 			}
 			);
+
+		//Listen for tag added/removed
+		/** HitReact tag */
+		AbilitySystemComponent->RegisterGameplayTagEvent(FAuraGameplayTags::Get().Effect_HitReact, EGameplayTagEventType::NewOrRemoved).AddUObject(
+			this,
+			&AAuraEnemy::HitReactTagChanged); // AbilitySystemComponent->RegisterGameplayTagEvent(FAuraGameplayTags::Get().Effect_HitReact, EGameplayTagEventType::NewOrRemoved) // return delegate
 		
-		/* Brodcastt info about Init value to widget*/
+		/* Broadcast info about Init value to widget*/
 		OnHealthChanged.Broadcast(AuraAS->GetHealth());
 		OnMaxHealthChanged.Broadcast(AuraAS->GetMaxHealth());
 		
 	}
+}
+
+void AAuraEnemy::HitReactTagChanged(const FGameplayTag CallbackTag, int32 NewCount)
+{
+	bHitReacting = NewCount > 0;
+	GetCharacterMovement()->MaxWalkSpeed = bHitReacting ? 0.f : BaseWalkSpeed;
+	
 }
 
 void AAuraEnemy::InitAbilityActorInfo()

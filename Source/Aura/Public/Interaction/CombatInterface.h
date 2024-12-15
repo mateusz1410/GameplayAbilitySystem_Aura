@@ -13,6 +13,7 @@ class UCombatInterface : public UInterface
 	GENERATED_BODY()
 };
 
+class UAnimMontage;
 /**
  * 
  */
@@ -27,5 +28,9 @@ public:
 	virtual FVector GetCombatSocketLocation();
 
 	UFUNCTION(BlueprintImplementableEvent,BlueprintCallable) //can't be virtual if BlueprintImplementableEvent   
-	void UpdateFacingTarget(const FVector& Target); 
+	void UpdateFacingTarget(const FVector& Target);
+
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
+	UAnimMontage* GetHitReactMontage(); // BlueprintNativeEvent is virtual by default
+
 };

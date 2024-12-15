@@ -15,6 +15,7 @@ and their values implicitly convert to integers and other types
  *
  **/
 
+class UGameplayAbility;
 class UGameplayEffect;
 
 UENUM(BlueprintType)
@@ -54,6 +55,9 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "Common Class Defaults")
 	TSubclassOf<UGameplayEffect> VitalAttributes; // mana and HP
 	//-----------------------
+	
+	UPROPERTY(EditDefaultsOnly, Category = "Common Class Defaults")
+	TArray<TSubclassOf<UGameplayAbility>> CommonAbilities; // array of common  for all calsses
 	
 	FCharacterClassDefaultInfo GetClassDefaultInfo(ECharacterClass CharacterClass) const;
 };

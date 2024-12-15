@@ -9,6 +9,7 @@
 #include "Net/UnrealNetwork.h"
 #include "AbilitySystemBlueprintLibrary.h"
 #include "AuraGameplayTags.h"
+#include "Fonts/UnicodeBlockRange.h"
 
 UAuraAttributeSet::UAuraAttributeSet()
 {
@@ -164,9 +165,15 @@ void UAuraAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallba
 		{
 			const float NewHealth = GetHealth()-LocalIncomingDamage;
 			SetHealth(FMath::Clamp(NewHealth, 0.f, GetMaxHealth()));
-
-			bool bFatal = NewHealth <= 0.f;
 			
+			const bool bFatal = NewHealth <= 0.f;
+			if (!bFatal)
+			{
+				FGameplayTagContainer TagContainer;
+				TagContainer.AddTag(FAuraGameplayTags::Get().Effect_HitReact);
+				
+				Props.TargetASC->TryActivateAbilitiesByTag(TagContainer); //HitReaction activate
+			}
 		}
 		
 	}
