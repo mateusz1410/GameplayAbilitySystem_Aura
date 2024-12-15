@@ -26,6 +26,12 @@ public:
 	UAttributeSet* GetAttributeSet() const { return AttributeSet; };
 
 	virtual UAnimMontage* GetHitReactMontage_Implementation() override;
+
+	/** Server only */
+	virtual void Die() override; //ragdoll adn drop weapon
+
+	UFUNCTION(NetMulticast, reliable)
+	virtual void MulticastHandleDeath();
 	
 protected:
 	virtual void BeginPlay() override;
@@ -35,15 +41,19 @@ protected:
 
 	UPROPERTY(EditAnywhere, Category = "Combat")
 	FName WeaponTipSocketName;
-
+	
 	virtual FVector GetCombatSocketLocation() override;
 
+	//-----------------
+	
 	UPROPERTY()
 	TObjectPtr<UAbilitySystemComponent> AbilitySystemComponent;
 
 	UPROPERTY()
 	TObjectPtr<UAttributeSet> AttributeSet;
 
+	//------------------------
+	
 	virtual void InitAbilityActorInfo();
 
 	UPROPERTY(BlueprintReadOnly,EditAnywhere, Category = "Attributes")

@@ -33,4 +33,5 @@ public:
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
 	UAnimMontage* GetHitReactMontage(); // BlueprintNativeEvent is virtual by default
 
+	virtual void Die()=0;
 };
