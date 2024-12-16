@@ -11,8 +11,11 @@
 #include "AbilitySystem/AuraAbilitySystemComponent.h"
 #include "Components/SplineComponent.h"
 #include "AuraGameplayTags.h"
+#include "MovieSceneTracksComponentTypes.h"
 #include "NavigationSystem.h"
 #include "NavigationPath.h"
+#include "GameFramework/Character.h"
+#include "UI/Widget/DamageTextComponent.h"
 
 AAuraPlayerController::AAuraPlayerController()
 {
@@ -30,6 +33,20 @@ void AAuraPlayerController::PlayerTick(float DeltaTime)
 
 	CursorTrace();
 	AutoRun();
+}
+
+void AAuraPlayerController::ShowDamageNumber_Implementation(float DamageAmount, ACharacter* TargetCharacter)
+{
+	if (IsValid(TargetCharacter) && DamageTextComponentClass)
+	{
+		UDamageTextComponent* DamageText = NewObject<UDamageTextComponent>(TargetCharacter,DamageTextComponentClass, "DamageTextComponent");
+		DamageText->RegisterComponent();//req when create component dynamic, not createDefaultSubobject
+		DamageText->AttachToComponent(TargetCharacter->GetRootComponent(),FAttachmentTransformRules::KeepRelativeTransform); //start point of anim
+		DamageText->DetachFromComponent(FDetachmentTransformRules::KeepWorldTransform);//flow away with animation
+
+		DamageText->SetDamageText(DamageAmount);
+	}
+	//DamageTextComponentClass
 }
 
 void AAuraPlayerController::AutoRun()

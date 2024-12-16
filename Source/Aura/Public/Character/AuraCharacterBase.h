@@ -44,7 +44,7 @@ protected:
 	
 	virtual FVector GetCombatSocketLocation() override;
 
-	//-----------------
+	//-------GAS BASE----------
 	
 	UPROPERTY()
 	TObjectPtr<UAbilitySystemComponent> AbilitySystemComponent;
@@ -73,7 +73,24 @@ protected:
 //--------------------------
 
 	void AddCharacterAbilities();
+	
+//--------------------------
 
+	/** Dissolve Effect - destroy mesh effect, after death */
+	void Dissolve();
+
+	UFUNCTION(BlueprintImplementableEvent,BlueprintCallable)
+	void StartDissolveTimeline(UMaterialInstanceDynamic* DynamicMaterialInstance);
+
+	UFUNCTION(BlueprintImplementableEvent,BlueprintCallable)
+	void StartWeaponDissolveTimeline(UMaterialInstanceDynamic* DynamicMaterialInstance);
+	
+	UPROPERTY(BlueprintReadOnly, EditAnywhere)
+	TObjectPtr<UMaterialInstance> DissolveMaterialInstance; //mesh
+	
+	UPROPERTY(BlueprintReadOnly, EditAnywhere)
+	TObjectPtr<UMaterialInstance> WeaponDissolveMaterialInstance;
+	
 private:
 
 	UPROPERTY(EditAnywhere, Category = "Abilities")

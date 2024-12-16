@@ -11,6 +11,7 @@
  * 
  */
 
+class UDamageTextComponent;
 class UInputMappingContext;
 class UInputAction;
 struct FInputActionValue;
@@ -29,7 +30,11 @@ public:
 	AAuraPlayerController();
 
 	virtual void PlayerTick(float DeltaTime);
-
+	
+	UFUNCTION(Client, Reliable)
+	/** ShowDamage received by TargetActor */
+	void ShowDamageNumber(float DamageAmount, ACharacter* TargetCharacter);
+	
 protected:
 	virtual void BeginPlay() override;
 
@@ -97,5 +102,8 @@ private:
 	TObjectPtr<USplineComponent> Spline;
 
 	void AutoRun(); // move to clicked location
+	
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<UDamageTextComponent> DamageTextComponentClass;
 
 };

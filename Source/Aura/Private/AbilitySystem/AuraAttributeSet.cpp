@@ -11,6 +11,8 @@
 #include "AuraGameplayTags.h"
 #include "Fonts/UnicodeBlockRange.h"
 #include "Interaction/CombatInterface.h"
+#include "Kismet/GameplayStatics.h"
+#include "Player/AuraPlayerController.h"
 
 UAuraAttributeSet::UAuraAttributeSet()
 {
@@ -185,10 +187,12 @@ void UAuraAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallba
 				
 				Props.TargetASC->TryActivateAbilitiesByTag(TagContainer); //HitReaction activate
 			}
+			
+			//DamageText
+			ShowFloatingText(Props, LocalIncomingDamage);
 		}
 		
 	}
-
 	/* LOG
 
 	UE_LOG(LogTemp, Warning, TEXT("Props EffectContextHandle %s"), *Props.EffectContextHandle.ToString());
@@ -203,7 +207,6 @@ void UAuraAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallba
 	UE_LOG(LogTemp, Warning, TEXT("Props TargetController %s"), *Props.TargetController->GetFullName());
 
 	*/
-
 	/*
 	if (Data.EvaluatedData.Attribute == GetHealthAttribute())
 	{
@@ -212,6 +215,20 @@ void UAuraAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallba
 	}
 	*/
 }
+
+void UAuraAttributeSet::ShowFloatingText(const FEffectProperties& Props, float Damage) const
+{
+		if (Props.SourceCharacter != Props.TargetCharacter)
+		{
+			if (AAuraPlayerController* PC = Cast<AAuraPlayerController>(UGameplayStatics::GetPlayerController(Props.SourceCharacter ,0)))
+			{
+				//RPC Client
+				PC->ShowDamageNumber(Damage, Props.TargetCharacter);
+			}
+		}
+}
+
+
 #pragma region OnRep functions
 void UAuraAttributeSet::OnRep_Health(const FGameplayAttributeData& OldHealth) const
 {
