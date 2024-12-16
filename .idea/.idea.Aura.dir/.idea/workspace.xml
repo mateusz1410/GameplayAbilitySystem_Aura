@@ -8,25 +8,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4fb5ab7c-f521-4bd9-9f03-096a04279fca" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Content/_Main/Blueprints/UI/FloatingText/BP_DamageTextComponent.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/_Main/Blueprints/UI/FloatingText/WBP_DamageText.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/Aura/Private/UI/Widget/DamageTextComponent.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/Aura/Public/UI/Widget/DamageTextComponent.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/_Main/Blueprints/AbilitySystem/GameplayEffects/DefaultAttributes/Enemy/GE_SecondaryAttributes_Enemy_TEST.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/ExecCalc/ExecCalc_Damage.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/ExecCalc/ExecCalc_Damage.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Assets/Enemies/Goblin/Materials/MI_GoblinDissolve.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/Enemies/Goblin/Materials/MI_GoblinDissolve.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Assets/Enemies/Goblin/Spear/Materials/MI_Spear_Dissolve.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/Enemies/Goblin/Spear/Materials/MI_Spear_Dissolve.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Maps/StartupMap.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Maps/StartupMap.umap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/_Main/Blueprints/Character/Aura/BP_AuraCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_Main/Blueprints/Character/Aura/BP_AuraCharacter.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/_Main/Blueprints/Character/BP_EnemyBase.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_Main/Blueprints/Character/BP_EnemyBase.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/_Main/Blueprints/Character/Goblin_Slingshot/BP_Goblin_Slingshot.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_Main/Blueprints/Character/Goblin_Slingshot/BP_Goblin_Slingshot.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/_Main/Blueprints/Character/Goblin_Spear/BP_Goblin_Spear.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_Main/Blueprints/Character/Goblin_Spear/BP_Goblin_Spear.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/_Main/Blueprints/Player/BP_AuraPlayerController.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_Main/Blueprints/Player/BP_AuraPlayerController.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAttributeSet.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAttributeSet.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Character/AuraCharacterBase.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Character/AuraCharacterBase.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Player/AuraPlayerController.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Player/AuraPlayerController.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/AuraAttributeSet.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/AuraAttributeSet.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Character/AuraCharacterBase.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Character/AuraCharacterBase.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Player/AuraPlayerController.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Player/AuraPlayerController.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/_Main/Blueprints/AbilitySystem/Data/DA_CharacterClassInfo.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_Main/Blueprints/AbilitySystem/Data/DA_CharacterClassInfo.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/_Main/Blueprints/AbilitySystem/GameplayEffects/GE_Damage.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_Main/Blueprints/AbilitySystem/GameplayEffects/GE_Damage.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraProjectileSpell.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraProjectileSpell.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,34 +62,9 @@
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="cidr-memory-view://10" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://9" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Intermediate/Build/Win64/UnrealEditor/Inc/Aura/UHT/AuraPlayerController.gen.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../Program Files/Epic Games/UE_5.3/Engine/Source/Runtime/Core/Private/Containers/String.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../Program Files/Epic Games/UE_5.3/Engine/Source/Runtime/CoreUObject/Private/UObject/Class.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../Program Files/Epic Games/UE_5.3/Engine/Source/Runtime/CoreUObject/Private/UObject/ScriptCore.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../Program Files/Epic Games/UE_5.3/Engine/Source/Runtime/CoreUObject/Public/UObject/ObjectHandle.h" root0="FORCE_HIGHLIGHTING" />
@@ -223,6 +186,7 @@
       <workItem from="1734295286141" duration="7437000" />
       <workItem from="1734303097829" duration="1974000" />
       <workItem from="1734344847026" duration="9459000" />
+      <workItem from="1734355468416" duration="13116000" />
     </task>
     <task id="LOCAL-00001" summary="* projectile GE">
       <option name="closed" value="true" />
