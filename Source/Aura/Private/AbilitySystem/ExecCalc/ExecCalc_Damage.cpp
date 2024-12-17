@@ -140,7 +140,8 @@ void UExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExecuti
 	
 	//If CriticalHit, double the damage + bonus damage
 	Damage = bCriticalHit ? (Damage * 2.0f)+SourceCriticalHitDamage : Damage;
-	
+
+	/** OUT VALUE*/
 	const FGameplayModifierEvaluatedData EvaluatedData(UAuraAttributeSet::GetIncomingDamageAttribute(),EGameplayModOp::Additive,Damage);
 	OutExecutionOutput.AddOutputModifier(EvaluatedData);
 }
