@@ -33,7 +33,7 @@ public:
 	
 	UFUNCTION(Client, Reliable)
 	/** ShowDamage received by TargetActor */
-	void ShowDamageNumber(float DamageAmount, ACharacter* TargetCharacter);
+	void ShowDamageNumber(float DamageAmount, ACharacter* TargetCharacter, bool bBlockedHit, bool bCriticalHit);
 	
 protected:
 	virtual void BeginPlay() override;

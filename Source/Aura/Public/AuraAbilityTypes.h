@@ -21,8 +21,8 @@ public:
 	bool IsCriticalHit() const {return bIsCriticalHit;}
 	bool IsBlockedHit() const {return bIsBlockedHit;}
 
-	void SetCriticalHit(bool bInIsCriticalHit) {bIsCriticalHit = bInIsCriticalHit;}
-	void SetBlockedHit(bool bInIsBlockedHit) {bIsBlockedHit = bInIsBlockedHit;}
+	void SetIsCriticalHit(bool bInIsCriticalHit) {bIsCriticalHit = bInIsCriticalHit;}
+	void SetIsBlockedHit(bool bInIsBlockedHit) {bIsBlockedHit = bInIsBlockedHit;}
 
 	//---------------- REQ ---------
 	

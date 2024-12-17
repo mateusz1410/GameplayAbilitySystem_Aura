@@ -307,5 +307,5 @@ TMap<FGameplayTag, TStaticFunPtr<FGameplayAttribute()>> TagsToAttributes;// any 
 private:
 
 	void SetEffectProperties(const FGameplayEffectModCallbackData& Data, FEffectProperties& Props) const; //OutProps
-	void ShowFloatingText(const FEffectProperties& Props, float Damage) const;
+	void ShowFloatingText(const FEffectProperties& Props, float Damage, bool bBlockedHit, bool bCriticalHit) const;
 };
