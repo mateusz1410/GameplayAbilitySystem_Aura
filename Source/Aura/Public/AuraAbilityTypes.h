@@ -7,7 +7,15 @@ USTRUCT(BlueprintType)
 struct FAuraGameplayEffectContext : public FGameplayEffectContext
 {
 	GENERATED_BODY()
-	
+
+	/** NEED TO SET CONTEXT CLASS IN PROJECT,
+	 * add 
+	 * AuraAbilitySystemGlobals
+	 * override
+	 * virtual FGameplayEffectContext* AllocGameplayEffectContext() const override;
+	 *
+	 * use in MakeContext()
+	*/
 public:
 
 	bool IsCriticalHit() const {return bIsCriticalHit;}
