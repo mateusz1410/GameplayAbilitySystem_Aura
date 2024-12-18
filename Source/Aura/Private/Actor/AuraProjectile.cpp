@@ -49,7 +49,7 @@ void AAuraProjectile::BeginPlay()
 
 void AAuraProjectile::Destroyed()
 {
-	if (!bHit && !HasAuthority()) // actor can be destroyed on client beffore play effect, so add this
+	if (!bHit && !HasAuthority()) // actor can be destroyed on client before play effect, so add this
 	{
 		UGameplayStatics::PlaySoundAtLocation(this, ImpactSound, GetActorLocation(), FRotator::ZeroRotator);
 		UNiagaraFunctionLibrary::SpawnSystemAtLocation(this, ImpactEffect, GetActorLocation());
@@ -65,13 +65,20 @@ void AAuraProjectile::Destroyed()
 
 void AAuraProjectile::OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	UGameplayStatics::PlaySoundAtLocation(this, ImpactSound, GetActorLocation(),FRotator::ZeroRotator);
-	UNiagaraFunctionLibrary::SpawnSystemAtLocation(this,ImpactEffect, GetActorLocation());
-	if (LoopingSoundComponent && LoopingSoundComponent->IsPlaying())
+	if (!DamageEffectSpecHandle.Data.IsValid() || DamageEffectSpecHandle.Data.Get()->GetContext().GetEffectCauser() == OtherActor)
 	{
-		LoopingSoundComponent->Stop();
+		return; //DamageEffectSpecHandle.Data.IsValid()  not valid on client
 	}
-		
+	if (!bHit)
+	{
+		UGameplayStatics::PlaySoundAtLocation(this, ImpactSound, GetActorLocation(),FRotator::ZeroRotator);
+		UNiagaraFunctionLibrary::SpawnSystemAtLocation(this,ImpactEffect, GetActorLocation());
+		if (LoopingSoundComponent && LoopingSoundComponent->IsPlaying())
+		{
+			LoopingSoundComponent->Stop();
+		}
+	}
+	
 		// FString name = UEnum::GetValueAsString( GetLocalRole());
 		// GEngine->AddOnScreenDebugMessage(1, 10, FColor::Green, name);
 

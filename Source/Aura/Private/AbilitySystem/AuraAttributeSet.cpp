@@ -175,7 +175,7 @@ void UAuraAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallba
 		if (GetMaxMana() < 0.f) SetMaxMana(0.f);
 	}
 	
-	if (Data.EvaluatedData.Attribute == GetIncomingDamageAttribute())
+	if (Data.EvaluatedData.Attribute == GetIncomingDamageAttribute()) // IncomingDamage not replicated Valid only on Server4
 	{
 		const float LocalIncomingDamage =  GetIncomingDamage(); // damage to apply
 		SetIncomingDamage(0.f);
@@ -239,7 +239,7 @@ void UAuraAttributeSet::ShowFloatingText(const FEffectProperties& Props, float D
 {
 		if (Props.SourceCharacter != Props.TargetCharacter)
 		{
-			if (AAuraPlayerController* PC = Cast<AAuraPlayerController>(UGameplayStatics::GetPlayerController(Props.SourceCharacter ,0)))
+			if (AAuraPlayerController* PC = Cast<AAuraPlayerController>(Props.SourceCharacter->GetController()))
 			{
 				//RPC Client
 				PC->ShowDamageNumber(Damage, Props.TargetCharacter, bBlockedHit, bCriticalHit);

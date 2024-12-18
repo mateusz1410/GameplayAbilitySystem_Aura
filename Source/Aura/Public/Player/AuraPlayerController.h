@@ -42,7 +42,7 @@ protected:
 	virtual void SetupInputComponent() override;
 	//insted of 
 	//virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override; //.. in 
-	// haracter class
+	// character class
 
 private:
 #pragma region InputAction/Mapping
