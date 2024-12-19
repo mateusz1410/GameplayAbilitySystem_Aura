@@ -26,7 +26,7 @@ enum class ECharacterClass : uint8
 	Ranger UMETA(DisplayName = "Ranger")
 	
 };
-USTRUCT(BlueprintType)
+USTRUCT(BlueprintType) //specific class
 struct FCharacterClassDefaultInfo
 {
 	GENERATED_BODY()
@@ -34,11 +34,14 @@ struct FCharacterClassDefaultInfo
 	UPROPERTY(EditDefaultsOnly, Category = "Class Defaults")
 	TSubclassOf<UGameplayEffect> PrimaryAttributes; // init all PA with one GE, value for each class can be different
 	
+	UPROPERTY(EditDefaultsOnly, Category = "Class Defaults")
+	TArray<TSubclassOf<UGameplayAbility>> StartupAbilities; // array of class abilities
+	
 };
 /**
  * 
  */
-UCLASS()
+UCLASS() //all classes
 class AURA_API UCharacterClassInfo : public UDataAsset //use in AuraGameModeBase
 {
 	GENERATED_BODY()
@@ -57,7 +60,7 @@ public:
 	//-----------------------
 	
 	UPROPERTY(EditDefaultsOnly, Category = "Common Class Defaults")
-	TArray<TSubclassOf<UGameplayAbility>> CommonAbilities; // array of common  for all calsses
+	TArray<TSubclassOf<UGameplayAbility>> CommonAbilities; // array of common for all classes
 
 	UPROPERTY(EditDefaultsOnly, Category = "Common Class Defaults|Damage")
 	TObjectPtr<UCurveTable> DamageCalculationCoefficients;
