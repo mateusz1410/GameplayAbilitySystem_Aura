@@ -43,11 +43,18 @@ void AAuraEffectActor::ApplyEffectToTarget(AActor* TargetActor, TSubclassOf<UGam
 	{
 		ActiveEffectHandles.Add(ActiveEffectHandle, TargetASC); // if infinite GE and remove onEndOverlap add do map
 	}
+/*** End STEP1****/
+
+	if (bDestroyOnEffectApplication && !bIsInfinite)
+	{
+		Destroy();
+	}
 
 }
 
 void AAuraEffectActor::ApplyMultipleEffectsToTarget(AActor* TargetActor, TArray<TSubclassOf<UGameplayEffect>> GameplayEffectClassArray)
 {
+	if (TargetActor->ActorHasTag(FName("Enemy")) && !bApplyEffectsToEnemies) return;
 
 	for (auto GameplayEffect : GameplayEffectClassArray)
 	{
@@ -57,6 +64,8 @@ void AAuraEffectActor::ApplyMultipleEffectsToTarget(AActor* TargetActor, TArray<
 
 void AAuraEffectActor::OnOverlap(AActor* TargetActor)
 {
+	if (TargetActor->ActorHasTag(FName("Enemy")) && !bApplyEffectsToEnemies) return;
+	
 	if (InstantEffectApplicationPolicy == EEffectApplicationPolicy::EEAP_OnOverlap)
 	{
 		ApplyMultipleEffectsToTarget(TargetActor, InstantGameplayEffectClass); //before ApplyEffectToTarget for testing ApplyMultipleEffectsToTarget
@@ -76,6 +85,8 @@ void AAuraEffectActor::OnOverlap(AActor* TargetActor)
 
 void AAuraEffectActor::OnEndOverlap(AActor* TargetActor)
 {
+	if (TargetActor->ActorHasTag(FName("Enemy")) && !bApplyEffectsToEnemies) return;
+	
 	if (InstantEffectApplicationPolicy == EEffectApplicationPolicy::EEAP_OnEndOverlap)
 	{
 		ApplyMultipleEffectsToTarget(TargetActor, InstantGameplayEffectClass);
