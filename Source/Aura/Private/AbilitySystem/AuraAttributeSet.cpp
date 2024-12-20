@@ -243,6 +243,13 @@ void UAuraAttributeSet::ShowFloatingText(const FEffectProperties& Props, float D
 			{
 				//RPC Client
 				PC->ShowDamageNumber(Damage, Props.TargetCharacter, bBlockedHit, bCriticalHit);
+				return;
+			}
+			
+			if (AAuraPlayerController* PC = Cast<AAuraPlayerController>(Props.TargetCharacter->GetController()))
+			{
+				//RPC Client
+				PC->ShowDamageNumber(Damage, Props.TargetCharacter, bBlockedHit, bCriticalHit);
 			}
 		}
 }
