@@ -24,14 +24,18 @@ public:
 	AAuraCharacterBase();
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
 	UAttributeSet* GetAttributeSet() const { return AttributeSet; };
-
-	virtual UAnimMontage* GetHitReactMontage_Implementation() override;
-
-	/** Server only */
-	virtual void Die() override; //ragdoll adn drop weapon
-
+	
 	UFUNCTION(NetMulticast, reliable)
 	virtual void MulticastHandleDeath();
+	
+	/**Combat Interface*/
+	//Server only
+	virtual UAnimMontage* GetHitReactMontage_Implementation() override;
+	virtual void Die() override; //ragdoll adn drop weapon
+	virtual FVector GetCombatSocketLocation_Implementation() override;
+	virtual bool IsDead_Implementation() const override;
+	virtual AActor* GetAvatar_Implementation() override;
+	/** End Combat Interface*/
 	
 protected:
 	virtual void BeginPlay() override;
@@ -42,16 +46,14 @@ protected:
 	UPROPERTY(EditAnywhere, Category = "Combat")
 	FName WeaponTipSocketName;
 	
-	virtual FVector GetCombatSocketLocation() override;
-
-	//-------GAS BASE----------
+	bool bDead = false;
 	
+	//-------GAS BASE----------
 	UPROPERTY()
 	TObjectPtr<UAbilitySystemComponent> AbilitySystemComponent;
 
 	UPROPERTY()
 	TObjectPtr<UAttributeSet> AttributeSet;
-
 	//------------------------
 	
 	virtual void InitAbilityActorInfo();
