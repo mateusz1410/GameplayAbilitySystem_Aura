@@ -43,7 +43,7 @@ public:
 	virtual int32 GetPlayerLevel();
 	
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
-	FVector GetCombatSocketLocation();
+	FVector GetCombatSocketLocation(const FGameplayTag& MontageTag);
 
 	UFUNCTION(BlueprintImplementableEvent,BlueprintCallable) //can't be virtual if BlueprintImplementableEvent   
 	void UpdateFacingTarget(const FVector& Target);
