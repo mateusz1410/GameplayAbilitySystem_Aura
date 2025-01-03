@@ -70,15 +70,22 @@ public:
 	FGameplayTag Abilities_Attack;
 
 	//------------------------------------
-
-	FGameplayTag Montage_Attack_Weapon; //with weapon
-	FGameplayTag Montage_Attack_RightHand;//hand/claw attack
-	FGameplayTag Montage_Attack_LeftHand;
+	FGameplayTag CombatSocket_Weapon; //with weapon
+	FGameplayTag CombatSocket_RightHand;//hand/claw attack
+	FGameplayTag CombatSocket_LeftHand;
 	//--------------------------
 	
+	FGameplayTag Montage_Attack_1;  // character attack 1
+	FGameplayTag Montage_Attack_2;  // character attack 2
+	FGameplayTag Montage_Attack_3;
+	FGameplayTag Montage_Attack_4;
+
+	//-----------------------
 	TMap<FGameplayTag, FGameplayTag> DamageTypesToResistances;
 	//----------------------------
 	FGameplayTag Effect_HitReact;
+
+	
 private:
 	static FAuraGameplayTags GameplayTags;
 
