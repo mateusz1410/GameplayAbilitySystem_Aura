@@ -109,6 +109,9 @@ protected:
 	UPROPERTY(BlueprintReadOnly, EditAnywhere)
 	TObjectPtr<UNiagaraSystem> BloodEffect;
 
+	UPROPERTY(BlueprintReadOnly, EditAnywhere)
+	TObjectPtr<USoundBase> DeathSound;
+
 private:
 
 	UPROPERTY(EditAnywhere, Category = "Abilities")
@@ -116,4 +119,5 @@ private:
 
 	UPROPERTY(EditAnywhere, Category = "Combat")
 	TObjectPtr<UAnimMontage> HitReactMontage;
+	
 };

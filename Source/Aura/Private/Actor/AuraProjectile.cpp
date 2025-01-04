@@ -61,6 +61,7 @@ void AAuraProjectile::Destroyed()
 		{
 			LoopingSoundComponent->Stop();
 		}
+		bHit = true;
 
 	}
 
@@ -85,6 +86,8 @@ void AAuraProjectile::OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, 
 		{
 			LoopingSoundComponent->Stop();
 		}
+		
+		bHit = true;
 	}
 	
 		// FString name = UEnum::GetValueAsString( GetLocalRole());
