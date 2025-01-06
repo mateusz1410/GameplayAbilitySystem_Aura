@@ -73,6 +73,7 @@ public:
 	FGameplayTag CombatSocket_Weapon; //with weapon
 	FGameplayTag CombatSocket_RightHand;//hand/claw attack
 	FGameplayTag CombatSocket_LeftHand;
+	FGameplayTag CombatSocket_Tail;
 	//--------------------------
 	
 	FGameplayTag Montage_Attack_1;  // character attack 1
