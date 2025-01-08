@@ -8,35 +8,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4fb5ab7c-f521-4bd9-9f03-096a04279fca" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Content/Assets/Dungeon/Materials/Stairs/M_Stairs_ColumnsRims_f.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Assets/Dungeon/Materials/Stairs/M_Stairs_ColumnsRims_f_Inst.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Assets/Dungeon/Materials/Stairs/M_Stairs_Pillars_f.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Assets/Dungeon/Materials/Stairs/M_Stairs_Pillars_f_Inst.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Assets/Dungeon/Materials/Stairs/M_Stairs_Rail_f.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Assets/Dungeon/Materials/Stairs/M_Stairs_Rail_f_Inst.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Assets/Dungeon/Materials/Stairs/M_Stairs_Steps_f.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Assets/Dungeon/Materials/Stairs/M_Stairs_Steps_f_Inst.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Assets/Dungeon/Materials/Tileset1/M_Tileset1_f.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Assets/Dungeon/Materials/Tileset1/M_Tileset1_f_Inst.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Assets/Dungeon/Materials/Tileset2/M_Tileset2_f.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Assets/Dungeon/Materials/Tileset2/M_Tileset2_f_Inst.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Assets/Dungeon/Materials/TilesetCorner_fixedlighting/M_TilesetCorner_Balusters_f.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Assets/Dungeon/Materials/TilesetCorner_fixedlighting/M_TilesetCorner_Balusters_f_Inst.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Assets/Dungeon/Materials/TilesetCorner_fixedlighting/M_TilesetCorner_f.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Assets/Dungeon/Materials/TilesetCorner_fixedlighting/M_TilesetCorner_f_Inst.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/_Main/Blueprints/Actor/FadeActor/BPI_FadeInterface.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/_Main/Blueprints/Actor/FadeActor/BP_Tile3x3x3.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/_Main/Blueprints/Actor/FadeActor/FA_Beacon.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/_Main/Blueprints/Actor/FadeActor/FA_Corner_railing.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/_Main/Blueprints/Actor/FadeActor/FA_Stairs.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/_Main/Blueprints/Actor/FadeActor/FA_Tile3x3x2.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/_Main/Blueprints/Actor/FadeActor/FA_Tile3x3x3.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/_Main/Blueprints/UI/Overlay/SubWidget/WBP_HealthManaSpells.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Assets/Dungeon/Beacon/Material/MI_Beacon.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/Dungeon/Beacon/Material/MI_Beacon.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Assets/Dungeon/Beacon/Material/M_Beacon_f.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/Dungeon/Beacon/Material/M_Beacon_f.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Maps/Dungeon.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Maps/Dungeon.umap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/_Main/Blueprints/Actor/FadeActor/BP_FadeActor.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_Main/Blueprints/Actor/FadeActor/BP_FadeActor.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/_Main/Blueprints/Character/Aura/BP_AuraCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_Main/Blueprints/Character/Aura/BP_AuraCharacter.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/_Main/Blueprints/UI/Overlay/WBP_Overlay.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_Main/Blueprints/UI/Overlay/WBP_Overlay.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/_Main/Blueprints/UI/ProgressBar/WBP_GlobeProgressBar.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_Main/Blueprints/UI/ProgressBar/WBP_GlobeProgressBar.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/_Main/Blueprints/UI/ProgressBar/WBP_HealthGlobe.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_Main/Blueprints/UI/ProgressBar/WBP_HealthGlobe.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/_Main/Blueprints/UI/ProgressBar/WBP_ManaGlobe.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_Main/Blueprints/UI/ProgressBar/WBP_ManaGlobe.uasset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -178,6 +155,14 @@
         <option name="Build" />
       </method>
     </configuration>
+    <configuration default="true" type="Uproject" factoryName="rider.uproject">
+      <option name="DEFAULT_PROJECT_PATH" value="" />
+      <option name="PROJECT_FILE_PATH" value="" />
+      <option name="AUTO_SELECT_PRIORITY" value="0" />
+      <method v="2">
+        <option name="Build" />
+      </method>
+    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -229,6 +214,7 @@
       <workItem from="1736335852738" duration="1639000" />
       <workItem from="1736356548698" duration="4205000" />
       <workItem from="1736372097401" duration="640000" />
+      <workItem from="1736378802252" duration="671000" />
     </task>
     <task id="LOCAL-00001" summary="* projectile GE">
       <option name="closed" value="true" />
