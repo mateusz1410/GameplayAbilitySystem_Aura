@@ -7,6 +7,8 @@
 #include "AbilitySystem/AuraAttributeSet.h" 
 #include "OverlayWidgetController.generated.h"
 
+class UAuraAbilitySystemComponent;
+class UAbilityInfo;
 class UAuraUserWidget;
 //struct use in DT for widget, data related to tag (icon massage for tag)
 USTRUCT(BlueprintType)
@@ -68,9 +70,13 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintreadOnly, Category ="WidgetData")
 	TObjectPtr<UDataTable> MessageWidgetDataTable;
 
+	UPROPERTY(EditDefaultsOnly, BlueprintreadOnly, Category ="WidgetData")
+	TObjectPtr<UAbilityInfo> AbilityInfo;
 
 	template<typename T>
 	T* GetDataTableRowByTag(UDataTable* DataTable, const FGameplayTag& Tag);
+
+	void OnInitializeStartupAbilities(UAuraAbilitySystemComponent*  AuraAbilitySystemComponent);
 };
 // common to add template definition in .h
 template<typename T>

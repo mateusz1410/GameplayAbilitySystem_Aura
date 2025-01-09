@@ -84,28 +84,49 @@ void UOverlayWidgetController::BindCallbacksToDependencies()
 	AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(
 		AuraAttributeSet->GetMaxManaAttribute()).AddLambda([this](const FOnAttributeChangeData& Data) { OnMaxManaChanged.Broadcast(Data.NewValue); });
 
-
-	// add lambda  == AddUObject(this, function ref )
-	Cast<UAuraAbilitySystemComponent>(AbilitySystemComponent)->EffectAssetTags.AddLambda(
-	
-		[this](const FGameplayTagContainer& AssetTags) //[this]  -- out of scope GetDataTableRowByTag, FUIWidgetRow, MessageWidgetDataTable. this means this class 
+	if (UAuraAbilitySystemComponent*  AuraASC = Cast<UAuraAbilitySystemComponent>(AbilitySystemComponent))
+	{
+		
+		if (AuraASC->bStartupAbilitiesGiven) 
 		{
+			OnInitializeStartupAbilities(AuraASC); //already given, so init data
+		}
+		else
+		{
+			//wait for call and then init 
+			AuraASC->AbilitiesGivenDelegate.AddUObject(this, &UOverlayWidgetController::OnInitializeStartupAbilities);
+		}
 
-			for (const FGameplayTag& Tag : AssetTags)
+		// add lambda  == AddUObject(this, function ref )
+		AuraASC->EffectAssetTags.AddLambda(
+		
+			[this](const FGameplayTagContainer& AssetTags) //[this]  -- out of scope GetDataTableRowByTag, FUIWidgetRow, MessageWidgetDataTable. this means this class 
 			{
-				//* "A.1".MatchesTag("A") will return True, "A".MatchesTag("A.1") will return False
 
-				FGameplayTag MessageTag = FGameplayTag::RequestGameplayTag(FName("Message")); //get Tag Message
-				if (Tag.MatchesTag(MessageTag))
+				for (const FGameplayTag& Tag : AssetTags)
 				{
-					const FUIWidgetRow* Row = GetDataTableRowByTag<FUIWidgetRow>(MessageWidgetDataTable, Tag); //FUIWidgetRow struct use in DT 
-					MessageWidgetRowDelegate.Broadcast(*Row);
-				}
+					//* "A.1".MatchesTag("A") will return True, "A".MatchesTag("A.1") will return False
 
-				//const FString Msg = FString::Printf(TEXT("GE Tag: %s"), *Tag.ToString()); // Tag.GetTagName() or 
-				//GEngine->AddOnScreenDebugMessage(-1, 8.f, FColor::Blue, Msg);
-			}
-		}  
-	); // [cc](function parameter){function body/definition}
+					FGameplayTag MessageTag = FGameplayTag::RequestGameplayTag(FName("Message")); //get Tag Message
+					if (Tag.MatchesTag(MessageTag))
+					{
+						const FUIWidgetRow* Row = GetDataTableRowByTag<FUIWidgetRow>(MessageWidgetDataTable, Tag); //FUIWidgetRow struct use in DT 
+						MessageWidgetRowDelegate.Broadcast(*Row);
+					}
+
+					//const FString Msg = FString::Printf(TEXT("GE Tag: %s"), *Tag.ToString()); // Tag.GetTagName() or 
+					//GEngine->AddOnScreenDebugMessage(-1, 8.f, FColor::Blue, Msg);
+				}
+			}  
+		); // [cc](function parameter){function body/definition}
+	}
 	
+}
+
+void UOverlayWidgetController::OnInitializeStartupAbilities(UAuraAbilitySystemComponent* AuraAbilitySystemComponent)
+{
+	//Get information about all given abilities, look up their Ability Info, and broadcast it to widget
+	if (!AuraAbilitySystemComponent->bStartupAbilitiesGiven) return;
+	
+
 }

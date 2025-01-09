@@ -7,7 +7,7 @@
 #include "AuraAbilitySystemComponent.generated.h"
 
 DECLARE_MULTICAST_DELEGATE_OneParam(FEffectAssetTags, const FGameplayTagContainer& /*AssetTags*/);  // no param name, in dynamic you add param name, here no
-
+DECLARE_MULTICAST_DELEGATE_OneParam(FAbilitiesGiven, UAuraAbilitySystemComponent*);
 
 class UAuraUserWidget;
 class UGameplayAbility;
@@ -24,9 +24,10 @@ public:
 	void AbilityActorInfoSet();
 
 	FEffectAssetTags EffectAssetTags;
-
+	FAbilitiesGiven AbilitiesGivenDelegate;
 	void AddCharacterAbilities(const TArray<TSubclassOf<UGameplayAbility>>& StartupAbility);
-
+	bool bStartupAbilitiesGiven = false;
+	
 	void AbilityInputTagHeld(const  FGameplayTag& InputTag); // foe hold and pressed
 	void AbilityInputTagReleased(const  FGameplayTag& InputTag);
 
