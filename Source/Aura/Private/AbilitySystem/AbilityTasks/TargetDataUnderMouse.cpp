@@ -20,7 +20,7 @@ void UTargetDataUnderMouse::Activate()
 
 	if (bIsLocallyControlled)
 	{
-		SendMouseCursorData();// send TargetData
+		SendMouseCursorData();// send TargetData,only client know his mouse position
 	}
 	else
 	{
