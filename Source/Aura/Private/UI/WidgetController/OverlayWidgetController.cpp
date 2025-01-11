@@ -5,6 +5,8 @@
 #include "AbilitySystem/AuraAttributeSet.h" 
 #include "AbilitySystem/AuraAbilitySystemComponent.h"
 #include "AbilitySystem/Data/AbilityInfo.h"
+#include "AbilitySystem/Data/LevelUpInfo.h"
+#include "Player/AuraPlayerState.h"
 
 void UOverlayWidgetController::BroadcastInitialValues()
 {
@@ -29,9 +31,11 @@ void UOverlayWidgetController::BindCallbacksToDependencies()
 {
 	Super::BindCallbacksToDependencies();
 
+	AAuraPlayerState* AuraPlayerState = CastChecked<AAuraPlayerState>(PlayerState); // all  Aura widget controller have PlayerState
+	AuraPlayerState->OnXPChangedDelegate.AddUObject(this, &UOverlayWidgetController::OnXPChanged);
+	
 	// change value bind  hp drop, heal etc.
-	const UAuraAttributeSet* AuraAttributeSet = Cast<UAuraAttributeSet>(AttributeSet);
-
+	const UAuraAttributeSet* AuraAttributeSet = CastChecked<UAuraAttributeSet>(AttributeSet);
 
 	/* instedOf Lambda
  
@@ -142,5 +146,29 @@ void UOverlayWidgetController::OnInitializeStartupAbilities(UAuraAbilitySystemCo
 		});
 
 	AuraAbilitySystemComponent->ForEachAbility(BroadcastDelegate);	 // function making call 
+	
+}
+
+void UOverlayWidgetController::OnXPChanged(int32 NewXP) const
+{
+	const AAuraPlayerState* AuraPlayerState = CastChecked<AAuraPlayerState>(PlayerState);
+	const ULevelUpInfo* LevelUpInfo = AuraPlayerState->LevelUpInformation;
+	checkf(LevelUpInfo, TEXT(" Unable to find LevelUpInformation. Please fill out AuraPlayerState Blueprint")); //is set in BP
+	
+	const int32 Level = LevelUpInfo->FindLevelForXP(NewXP);
+	const int32 MaxLevel = LevelUpInfo->LevelUpInformation.Num(); // [0] is empty, start from [1]
+	
+	if (Level <=MaxLevel && Level > 0)
+	{
+		const int32 LevelUpRequirement = LevelUpInfo->LevelUpInformation[Level].LevelUpRequirement;//f.g 300
+		const int32 PreviousLevelUpRequirement = LevelUpInfo->LevelUpInformation[Level-1].LevelUpRequirement; //f.g 900
+
+		const int32 DeltaLevelRequirement  = LevelUpRequirement-PreviousLevelUpRequirement; // req for next level 600
+		const int32 XPForThisLevel = NewXP-PreviousLevelUpRequirement;// newXP = 450 (all XP), 450-300 = 150
+
+		const float XPBarPercentage = static_cast<float>(XPForThisLevel)/static_cast<float>(DeltaLevelRequirement); // 150/600
+
+		OnXPPercentChangedDelegate.Broadcast(XPBarPercentage); 
+	}
 	
 }

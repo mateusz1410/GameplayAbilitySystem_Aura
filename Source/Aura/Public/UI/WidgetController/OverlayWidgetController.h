@@ -68,6 +68,10 @@ public:
 	UPROPERTY(BlueprintAssignable, Category = "GAS|Messages")
 	FAbilityInfoSignature AbilityInfoDelegate;
 
+	///----------------------------------
+	UPROPERTY(BlueprintAssignable, Category = "GAS|XP")
+	FOnAttributeChangedSignature OnXPPercentChangedDelegate; // no attribute, but same signature
+	
 protected:
 
 	UPROPERTY(EditDefaultsOnly, BlueprintreadOnly, Category ="WidgetData")
@@ -80,6 +84,8 @@ protected:
 	T* GetDataTableRowByTag(UDataTable* DataTable, const FGameplayTag& Tag);
 
 	void OnInitializeStartupAbilities(UAuraAbilitySystemComponent*  AuraAbilitySystemComponent);
+
+	void OnXPChanged(int32 NewXP) const;
 };
 // common to add template definition in .h
 template<typename T>
