@@ -8,7 +8,7 @@
 
 void UAuraAbilitySystemComponent::AbilityActorInfoSet() // make sure  ASC is created is valid
 {
-	OnGameplayEffectAppliedDelegateToSelf.AddUObject(this, &UAuraAbilitySystemComponent::ClientEffectApplied); //AddUObject so dynamic delegate, no AddDyanmic
+	OnGameplayEffectAppliedDelegateToSelf.AddUObject(this, &UAuraAbilitySystemComponent::ClientEffectApplied); //AddUObject so dynamic delegate, no AddDynamic
 
 	/*
 	const FAuraGameplayTags& GameplayTags =  FAuraGameplayTags::Get();
@@ -130,7 +130,7 @@ void UAuraAbilitySystemComponent::OnRep_ActivateAbilities()
 void UAuraAbilitySystemComponent::ClientEffectApplied_Implementation(UAbilitySystemComponent* AbilitySystemComponent, const FGameplayEffectSpec& EffectSpec, FActiveGameplayEffectHandle ActiveEffectHandle)
 {
 	FGameplayTagContainer TagContainer;
-	EffectSpec.GetAllAssetTags(TagContainer);//get tags from effecct
+	EffectSpec.GetAllAssetTags(TagContainer);//get tags from effect
 
 	EffectAssetTags.Broadcast(TagContainer); // let WidgetController no, update ui and effect
 
