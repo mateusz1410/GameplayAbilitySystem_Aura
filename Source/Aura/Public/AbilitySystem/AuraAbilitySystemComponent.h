@@ -28,6 +28,7 @@ public:
 	FEffectAssetTags EffectAssetTags;
 	FAbilitiesGiven AbilitiesGivenDelegate;
 	void AddCharacterAbilities(const TArray<TSubclassOf<UGameplayAbility>>& StartupAbility);
+	void AddCharacterPassiveAbilities(const TArray<TSubclassOf<UGameplayAbility>>& StartupPassiveAbility);
 	bool bStartupAbilitiesGiven = false;
 	
 	void AbilityInputTagHeld(const  FGameplayTag& InputTag); // foe hold and pressed

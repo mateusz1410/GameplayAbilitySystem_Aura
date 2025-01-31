@@ -54,6 +54,13 @@ int32 AAuraCharacter::GetPlayerLevel()
 	return AuraPlayerState->GetPlayerLevel();
 }
 
+void AAuraCharacter::AddToXP_Implementation(int32 InXP)
+{
+	AAuraPlayerState* AuraPlayerState = GetPlayerState<AAuraPlayerState>(); // no actor on map, if you place acotr on map  this will return nullptr
+	check(AuraPlayerState);
+	AuraPlayerState->AddToXP(InXP);
+}
+
 void AAuraCharacter::InitAbilityActorInfo()
 {
 	AAuraPlayerState* AuraPlayerState = GetPlayerState<AAuraPlayerState>(); // no actor on map, if you place acotr on map  this will return nullptr

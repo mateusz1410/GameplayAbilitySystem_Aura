@@ -13,6 +13,7 @@
 #include "Aura/AuraLogChannels.h"
 #include "Fonts/UnicodeBlockRange.h"
 #include "Interaction/CombatInterface.h"
+#include "Interaction/PlayerInterface.h"
 #include "Kismet/GameplayStatics.h"
 #include "Player/AuraPlayerController.h"
 
@@ -194,6 +195,8 @@ void UAuraAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallba
 				{
 					CombatInterface->Die(); 
 				}
+
+				SendXPEvent(Props); // add XP reward 
 				
 			}
 			else
@@ -212,12 +215,16 @@ void UAuraAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallba
 		}
 		
 	}
-	if (Data.EvaluatedData.Attribute == GetIncomingXPAttribute())
+	if (Data.EvaluatedData.Attribute == GetIncomingXPAttribute()) // only player listen for this event
 	{
 		const float LocalIncomingXP =  GetIncomingXP(); // XP to add
 		SetIncomingXP(0.f); // store in local var, set 0 no more IncomingXP
-		
-		UE_LOG(LogAura, Log, TEXT("Incoming XP: %f"), LocalIncomingXP);
+
+		//TODO: check if, should level up
+		if (Props.SourceCharacter->Implements<UPlayerInterface>())
+		{
+			IPlayerInterface::Execute_AddToXP(Props.SourceCharacter, LocalIncomingXP);
+		}
 	}
 	/* LOG
 
@@ -240,6 +247,24 @@ void UAuraAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallba
 		//UE_LOG(LogTemp, Warning, TEXT("Maginitude %f"), Data.EvaluatedData.Magnitude);
 	}
 	*/
+}
+
+void UAuraAttributeSet::SendXPEvent(const FEffectProperties& Props)
+{
+	if (ICombatInterface* CombatInterface = Cast<ICombatInterface>(Props.TargetCharacter))
+	{
+		const int32 TargetLevel = CombatInterface->GetPlayerLevel();
+		const ECharacterClass TargetClass = ICombatInterface::Execute_GetCharacterClass(Props.TargetCharacter);
+		const int32 XPReward = UAuraAbilitySystemLibrary::GetXPRewardForClassAndLevel(Props.TargetCharacter,TargetClass,TargetLevel);
+
+		const FAuraGameplayTags& GameplayTags = FAuraGameplayTags::Get();
+		
+		FGameplayEventData Payload;
+		Payload.EventTag = GameplayTags.Attributes_Meta_IncomingXP; // GT used in GA
+		Payload.EventMagnitude = XPReward;
+		
+		UAbilitySystemBlueprintLibrary::SendGameplayEventToActor(Props.SourceCharacter,GameplayTags.Attributes_Meta_IncomingXP, Payload); //GT in GA for Wait event
+	}
 }
 
 void UAuraAttributeSet::ShowFloatingText(const FEffectProperties& Props, float Damage, bool bBlockedHit, bool bCriticalHit) const
