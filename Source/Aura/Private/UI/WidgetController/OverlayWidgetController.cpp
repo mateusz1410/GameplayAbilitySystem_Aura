@@ -33,6 +33,11 @@ void UOverlayWidgetController::BindCallbacksToDependencies()
 
 	AAuraPlayerState* AuraPlayerState = CastChecked<AAuraPlayerState>(PlayerState); // all  Aura widget controller have PlayerState
 	AuraPlayerState->OnXPChangedDelegate.AddUObject(this, &UOverlayWidgetController::OnXPChanged);
+
+	AuraPlayerState->OnLevelChangedDelegate.AddLambda( //OnLevelChangedDelegate(int32)
+		[this](int32 NewLevel){
+		OnPlayerLevelChangedDelegate.Broadcast(NewLevel);
+	});
 	
 	// change value bind  hp drop, heal etc.
 	const UAuraAttributeSet* AuraAttributeSet = CastChecked<UAuraAttributeSet>(AttributeSet);
@@ -152,7 +157,7 @@ void UOverlayWidgetController::OnInitializeStartupAbilities(UAuraAbilitySystemCo
 void UOverlayWidgetController::OnXPChanged(int32 NewXP) const
 {
 	const AAuraPlayerState* AuraPlayerState = CastChecked<AAuraPlayerState>(PlayerState);
-	const ULevelUpInfo* LevelUpInfo = AuraPlayerState->LevelUpInformation;
+	const ULevelUpInfo* LevelUpInfo = AuraPlayerState->LevelUpInfo;
 	checkf(LevelUpInfo, TEXT(" Unable to find LevelUpInformation. Please fill out AuraPlayerState Blueprint")); //is set in BP
 	
 	const int32 Level = LevelUpInfo->FindLevelForXP(NewXP);

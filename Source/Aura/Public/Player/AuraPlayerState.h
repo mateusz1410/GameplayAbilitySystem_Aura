@@ -32,7 +32,7 @@ public:
 //---------------------- XP and Lvl ----------
 	
 	UPROPERTY(EditDefaultsOnly)
-	TObjectPtr<ULevelUpInfo> LevelUpInformation;
+	TObjectPtr<ULevelUpInfo> LevelUpInfo;
 	
 	FORCEINLINE int32 GetPlayerLevel() const { return Level; }// not interface
 	FORCEINLINE int32 GetXP() const { return XP; }
