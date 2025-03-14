@@ -35,7 +35,7 @@ public:
 	FGameplayTag Attributes_Secondary_MaxHealth;
 	FGameplayTag Attributes_Secondary_MaxMana;
 	//-----------------------
-		//works like secondary attribute, base on Primary
+	//works like secondary attribute, base on Primary
 	FGameplayTag Attributes_Resistance_Fire;
 	FGameplayTag Attributes_Resistance_Lightning;
 	FGameplayTag Attributes_Resistance_Arcane;
@@ -46,6 +46,7 @@ public:
 	
 	//-----------------------
 
+	//Key
 	FGameplayTag InputTag_LMB;
 	FGameplayTag InputTag_RMB;
 
@@ -60,11 +61,13 @@ public:
 	FGameplayTag InputTag_9;
 	FGameplayTag InputTag_0;
 
+	//no key, but next to key, ID
 	FGameplayTag InputTag_Passive_1;
 	FGameplayTag InputTag_Passive_2;
 
 	//----------------------------
 
+	//Damage Type
 	FGameplayTag Damage;
 	FGameplayTag Damage_Fire;
 	FGameplayTag Damage_Lightning;
@@ -73,11 +76,28 @@ public:
 
 	//------------------------------
 
-	FGameplayTag Abilities_Attack;
+	// NPC action
+	FGameplayTag Abilities_Attack; 
 	FGameplayTag Abilities_Summon;
-	
+
+	//Hit anim
+	FGameplayTag Abilities_HitReact;
+
+	//Can player use Ability, status
+	FGameplayTag Abilities_Status_Locked;
+	FGameplayTag Abilities_Status_Eligible;
+	FGameplayTag Abilities_Status_Unlocked;
+	FGameplayTag Abilities_Status_Equipped;
+
+	//Ability type
+	FGameplayTag Abilities_Type_Offensive;
+	FGameplayTag Abilities_Type_Passive;
+	FGameplayTag Abilities_Type_None; // hitReact etc.
+
+	//Player attack ability
 	FGameplayTag Abilities_Fire_FireBolt;
 	FGameplayTag Cooldown_Fire_FireBolt;
+	
 
 	//------------------------------------
 	FGameplayTag CombatSocket_Weapon; //with weapon
@@ -86,7 +106,7 @@ public:
 	FGameplayTag CombatSocket_Tail;
 	//--------------------------
 	
-	FGameplayTag Montage_Attack_1;  // character attack 1
+	FGameplayTag Montage_Attack_1;  // character attack 1, ID
 	FGameplayTag Montage_Attack_2;  // character attack 2
 	FGameplayTag Montage_Attack_3;
 	FGameplayTag Montage_Attack_4;
