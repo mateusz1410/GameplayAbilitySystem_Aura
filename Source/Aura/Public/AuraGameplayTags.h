@@ -60,6 +60,9 @@ public:
 	FGameplayTag InputTag_9;
 	FGameplayTag InputTag_0;
 
+	FGameplayTag InputTag_Passive_1;
+	FGameplayTag InputTag_Passive_2;
+
 	//----------------------------
 
 	FGameplayTag Damage;
