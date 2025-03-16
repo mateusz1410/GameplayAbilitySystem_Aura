@@ -75,7 +75,9 @@ public:
 	FGameplayTag Damage_Physical;
 
 	//------------------------------
-
+	
+	FGameplayTag Abilities_None;
+	
 	// NPC action
 	FGameplayTag Abilities_Attack; 
 	FGameplayTag Abilities_Summon;
