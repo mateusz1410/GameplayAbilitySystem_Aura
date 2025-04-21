@@ -78,6 +78,9 @@ protected:
 	T* GetDataTableRowByTag(UDataTable* DataTable, const FGameplayTag& Tag);
 	
 	void OnXPChanged(int32 NewXP);
+
+	UFUNCTION()
+	void OnAbilityEquipped(const FGameplayTag& AbilityTag, const FGameplayTag& Status, const FGameplayTag& Slot, const FGameplayTag& PreviousSlot) const;
 };
 // common to add template definition in .h
 template<typename T>
