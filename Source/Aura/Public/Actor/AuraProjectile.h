@@ -3,11 +3,10 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameplayEffectTypes.h"
+#include "AuraAbilityTypes.h"
 #include "GameFramework/Actor.h"
 #include "AuraProjectile.generated.h"
 
-struct FGameplayEffectSpecHandle;
 class USphereComponent;
 class UProjectileMovementComponent;
 class UNiagaraSystem;
@@ -24,10 +23,11 @@ public:
 	TObjectPtr<UProjectileMovementComponent> ProjectileMovement;
 
 	UPROPERTY(BlueprintReadWrite, meta = (ExposeOnSpawn = true)) 
-	FGameplayEffectSpecHandle DamageEffectSpecHandle; //effect applied on target when Overlap
+	FDamageEffectParams DamageEffectParams;
 
 protected:
 	virtual void BeginPlay() override;
+	void OnHit();
 	virtual void Destroyed() override;
 
 	UFUNCTION()
@@ -43,7 +43,6 @@ private:
 
 	bool bHit = false;
 
-
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<UNiagaraSystem> ImpactEffect;
 
@@ -55,5 +54,4 @@ private:
 
 	UPROPERTY()
 	UAudioComponent* LoopingSoundComponent;
-
 };

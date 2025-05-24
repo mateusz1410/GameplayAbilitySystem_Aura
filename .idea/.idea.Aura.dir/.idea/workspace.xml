@@ -9,20 +9,9 @@
   <component name="ChangeListManager">
     <list default="true" id="4fb5ab7c-f521-4bd9-9f03-096a04279fca" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Maps/Dungeon.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Maps/Dungeon.umap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/_Main/Blueprints/AbilitySystem/Aura/Abilities/Fire/FireBolt/GA_FireBolt.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_Main/Blueprints/AbilitySystem/Aura/Abilities/Fire/FireBolt/GA_FireBolt.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/_Main/Blueprints/AbilitySystem/Enemy/Abilities/GA_Enemy_FireBolt.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_Main/Blueprints/AbilitySystem/Enemy/Abilities/GA_Enemy_FireBolt.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/_Main/Blueprints/AbilitySystem/Enemy/Abilities/GA_MeleeAttack.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_Main/Blueprints/AbilitySystem/Enemy/Abilities/GA_MeleeAttack.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/_Main/Blueprints/AbilitySystem/Enemy/Abilities/GA_RangedAttack.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_Main/Blueprints/AbilitySystem/Enemy/Abilities/GA_RangedAttack.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraDamageGameplayAbility.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraDamageGameplayAbility.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraFireBolt.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraFireBolt.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraProjectileSpell.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraProjectileSpell.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemLibrary.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemLibrary.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AuraGameplayTags.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AuraGameplayTags.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Abilities/AuraDamageGameplayAbility.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Abilities/AuraDamageGameplayAbility.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/AuraAbilitySystemLibrary.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/AuraAbilitySystemLibrary.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/AuraAbilityTypes.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/AuraAbilityTypes.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/AuraGameplayTags.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/AuraGameplayTags.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Actor/AuraProjectile.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Actor/AuraProjectile.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Actor/AuraProjectile.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Actor/AuraProjectile.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -262,7 +251,7 @@
       <workItem from="1745059825019" duration="3185000" />
       <workItem from="1745069316401" duration="5224000" />
       <workItem from="1745217751608" duration="11706000" />
-      <workItem from="1748083701773" duration="6680000" />
+      <workItem from="1748083701773" duration="8519000" />
     </task>
     <task id="LOCAL-00001" summary="* projectile GE">
       <option name="closed" value="true" />
