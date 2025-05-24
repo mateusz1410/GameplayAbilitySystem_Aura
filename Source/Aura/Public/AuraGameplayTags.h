@@ -34,13 +34,6 @@ public:
 	FGameplayTag Attributes_Secondary_ManaRegeneration;
 	FGameplayTag Attributes_Secondary_MaxHealth;
 	FGameplayTag Attributes_Secondary_MaxMana;
-	//-----------------------
-	//works like secondary attribute, base on Primary
-	FGameplayTag Attributes_Resistance_Fire;
-	FGameplayTag Attributes_Resistance_Lightning;
-	FGameplayTag Attributes_Resistance_Arcane;
-	FGameplayTag Attributes_Resistance_Physical;
-	//-----------------------
 
 	FGameplayTag Attributes_Meta_IncomingXP;
 	
@@ -74,8 +67,25 @@ public:
 	FGameplayTag Damage_Arcane;
 	FGameplayTag Damage_Physical;
 
-	//------------------------------
+	//-----------------------
+	//works like secondary attribute, base on Primary
+	FGameplayTag Attributes_Resistance_Fire;
+	FGameplayTag Attributes_Resistance_Lightning;
+	FGameplayTag Attributes_Resistance_Arcane;
+	FGameplayTag Attributes_Resistance_Physical;
 	
+	//Debuff effect caused by Ability, Fire can cause burn ----------------------
+	FGameplayTag Debuff_Burn;
+	FGameplayTag Debuff_Stun;
+	FGameplayTag Debuff_Arcane;
+	FGameplayTag Debuff_Physical;
+
+	// info. debuff
+	FGameplayTag Debuff_Chance;
+	FGameplayTag Debuff_Damage;
+	FGameplayTag Debuff_Frequency;
+	FGameplayTag Debuff_Duration;
+	//---------------------------------------------------
 	FGameplayTag Abilities_None;
 	
 	// NPC action
@@ -116,6 +126,7 @@ public:
 
 	//-----------------------
 	TMap<FGameplayTag, FGameplayTag> DamageTypesToResistances;
+	TMap<FGameplayTag, FGameplayTag> DamageTypesToDebuffs;
 	//----------------------------
 	FGameplayTag Effect_HitReact;
 
